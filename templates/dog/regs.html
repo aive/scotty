@@ -1,0 +1,17 @@
+<ul>
+{% if regs %}
+	{% for r in regs %}
+		{% if r == act_reg %}
+			<li>
+			<strong>
+			<a href="{% url 'dog:show_region' r.slug %}">{{ r.name }}</a>
+			</strong>	
+			</li>
+		{% else %}
+			<li>
+			<a href="{% url 'dog:show_region' r.slug %}">{{ r.name }}</a>
+			</li>
+		{% endif %}
+	{% endfor %}
+{% endif %}
+</ul>

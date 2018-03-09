@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'dog/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	{{ region.name }}
+{% endblock %}
+
+{% block body_block %}
+	{% if region %}
+		<h1>{{ region.name }}</h1>
+		
+		{% if cottages %}
+			<ul>
+			{% for cottage in cottages %}
+ 				<li>{{ cottage.address }}>{{ cottage.title }} </a></li>
+			{% endfor %}
+			</ul>
+		{% else %}
+			<strong>No cottages currently in region.</strong>
+		{% endif %}
+		
+		{% if user.is_authenticated %}
+			<a href="{% url 'dog:add_cottage' region.slug %}">Add a Cottage</a>
+		{% endif %}
+	{% else %}
+		The specified Region does not exist!
+	{% endif %}
+{% endblock %} 

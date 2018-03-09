@@ -1,0 +1,113 @@
+{% extends 'dog/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style> 
+		h1 {
+		font-size: 250px;
+		}
+		.container{
+			border-radius: 15px;
+			padding: 5%; 
+		}
+		div.searchcontent {
+			height:60px;
+			margin-top: 10px;
+			margin-left: auto;
+    			margin-right: auto;	
+			padding: 10px;
+    			background: rgba(255, 255, 255, 0.8);
+		}
+		.search{
+			float: left;
+      			position: relative;
+			padding-left: 10px;
+			padding-right: 10px;	
+		}
+		.button{
+			border: none;
+   			color: white;
+    			padding: auto;
+    			text-align: center;
+    			text-decoration: none;
+   	 		font-size: 16px;
+    			-webkit-transition-duration: 0.4s; /* Safari */
+   			transition-duration: 0.4s;
+    			cursor: pointer;
+			border-radius: 10px;
+		}
+
+		.searchbutton{
+    			background-color: white;
+    			color: black;
+    			border: 2px solid #483D8B;
+			//box-shadow: 1px 1px 11px #330033;
+		}
+
+		.searchbutton:hover {
+    			background-color: #483D8B;
+    			color: white;
+		}
+		
+		.region{
+    			position: relative;
+  			display: inline-block;
+		}
+			
+		#region{
+			overflow:hidden;
+			height: 7.5%; 
+   			width: 40%; 
+			-moz-border-radius: 9px 9px 9px 9px;
+   			-webkit-border-radius: 9px 9px 9px 9px;
+   			border-radius: 9px 9px 9px 9px;
+   			//box-shadow: 1px 1px 11px #330033;
+			background-color: white;
+    			color: black;
+    			border: 2px solid #483D8B;
+		}
+		#region:hover {
+    			background-color: #483D8B;
+    			color: white;
+		}
+		.input{
+			background-color: white;
+    			color: black;
+    			border: 2px solid #483D8B;
+			border-radius: 10px;
+			//box-shadow: 1px 1px 11px #330033;
+		}
+		
+</style>
+{% block title_block %}
+  Homepage
+{% endblock %}
+{% block body_block %}
+
+<div class="w3-display-container">
+<h1 style="color: white" class="w3-display-middle"> Dogbnb </h1> 
+</div>
+
+<!--- search bar -->
+<div class="container w3-display-container searchcontent">
+
+  <form class="search w3-display-middle">
+
+    <select id="region" class="button">
+	<option>--select region</option>
+	<option value='region1'>Region 1</option>
+    	<option value='region2'>Region 2</option>
+	</div>
+	</div>
+    </select>
+
+    <input class="input" type="text" name="price_from">
+    <input class="input" type="text" name="price_to">
+    <input class="button searchbutton " type="submit" value='Search'>
+
+
+  </form>
+
+</div>
+
+{% endblock %}

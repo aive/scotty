@@ -1,0 +1,25 @@
+{% extends 'dog/base.html' %}
+
+{% load staticfiles %}
+
+
+{% load dog_template_tags %}
+{% block title_block %}
+  
+About Us
+{% endblock %}
+
+
+{% block body_block %}
+
+
+<h1>About us</h1>
+
+
+{% block sidebar_block %}
+
+{% get_region_list region %}
+
+{% endblock %}
+
+{% endblock %}

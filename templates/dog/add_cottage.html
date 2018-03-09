@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'dog/base.html' %}
+{% block title_block %} 
+ Add a new page to {{ region.slug }} 
+{% endblock %}
+{%block body_block %}
+
+	<h2> Add a new page to {{ region.slug }}</h2>
+	
+	<div><br />
+
+		{% if not_region_name_url %}
+			<div style="color: red;">The specified category doees not exist!</div> 
+		{% else %}
+		<form id="page_form" method="post" action="/dog/region/{{region.slug}}/add_cottage/">
+
+		{% csrf_token %}	
+		{% for hidden in form.hidden_fields %}
+		{{ hidden }}
+		{% endfor %}
+		{% for field in form.visible_fields %}	
+		{{ field.errors }}
+		{{ field.help_text }}
+		{{ field }} 
+		{% endfor %}
+		<input type="submit" name="submit" value="Add Cottage"/>
+</form>
+		
+		{% endif %}
+{% endblock %}	

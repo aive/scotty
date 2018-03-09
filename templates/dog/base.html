@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+{% load dog_template_tags %}
+{% load staticfiles %}
+<html lang="en">
+  <head>
+
+<title>
+DOG BNB - 
+{% block title_block %}
+{% endblock %}
+</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			// set the random image for the site background
+			// only requires the relative path to the STATIC FILES folder
+			var images = 10; // number of images
+      // Get a random image from 1 to 10
+			var randImage = Math.floor(Math.random() * images) + 1; 
+      // Change the background image
+			$(".background").css("background-image", "url('{% static "images/bg_" %}"+ randImage + ".jpg')");
+		});
+	</script>
+
+	<style>
+		body, html {
+			height: 100%;
+			margin: 0;
+			font: 400 15px/1.8 "Myriad Pro", sans-serif;
+			color: #777;
+		}
+		.background { 
+			height: 100%;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		
+		}
+		.container{
+			border-radius: 15px;
+			padding: 5%; 
+		}
+		.nav-item{
+			color: white;
+			}
+		div.menu {
+			width: 100%;
+			margin-top: 0px;
+			padding: 0px;	
+			
+		}
+		div.footer {
+			height:120px;
+			margin: 10px auto 20px auto;
+			padding: 0px;
+			background: rgba(255, 255, 255, 0.8);
+		}
+		
+		div.maincontent {
+			margin-top: 7.5%;
+			padding: 15px;
+    			background: rgba(255, 255, 255, 0.8);
+			
+		}
+		.navbar {
+			padding: 15px;
+			margin: 0px !important;
+
+	
+		}
+		
+		.button{
+			border: none;
+   			color: white;
+    			padding: 5px;
+    			text-align: center;
+    			text-decoration: none;
+    			display: inline-block;
+   	 		font-size: 16px;
+   			margin: 4px 2px;
+    			-webkit-transition-duration: 0.4s; /* Safari */
+   			transition-duration: 0.4s;
+    			cursor: pointer;
+			border-radius: 10px;
+		}
+
+		.searchbutton{
+    			background-color: white;
+    			color: black;
+    			border: 2px solid #800000;
+			//box-shadow: 1px 1px 11px #330033;
+		}
+
+		.searchbutton:hover {
+    			background-color: #800000;
+    			color: white;
+		}
+		.search{
+			margin: 0px !important;
+			float: left;
+      			position: relative;
+			padding-left: 10px;
+			padding-right: 10px;	
+		}
+		.region{
+    			position: relative;
+		}
+			
+		#region{
+			overflow:hidden;
+			height: 7.5%; 
+   			width: 20%; 
+			-moz-border-radius: 9px 9px 9px 9px;
+   			-webkit-border-radius: 9px 9px 9px 9px;
+   			border-radius: 9px 9px 9px 9px;
+   			//box-shadow: 1px 1px 11px #330033;
+			background-color: white;
+    			color: black;
+    			border: 2px solid #800000;
+		}
+		#region:hover {
+    			background-color: #800000;
+    			color: white;
+		}
+		.input{
+			background-color: white;
+    			color: black;
+    			border: 2px solid #800000;
+			border-radius: 10px;
+			//box-shadow: 1px 1px 11px #330033;
+		}
+		
+	</style>
+
+</head>
+<body class='background'>
+
+<!--- nav content area --> 
+<div class="container menu">
+
+<nav  id="navbar" class="navbar navbar-toggleable-md navbar-light bg-faded">
+
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand" href="/">
+    <img src="https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="DOG BNB">
+  </a>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'dog:about' %}">Regions</a>
+      </li>
+
+
+      {% if user.is_authenticated %}
+	<li class="nav-item">
+        <a class="nav-link" href="{% url 'dog:add_region' %}">Add Region</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'auth_logout' %}">Logout </a>
+      </li>
+	{% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'registration_register' %}">Register </a>
+      </li>
+
+      {% endif %}
+
+    </ul>
+
+    <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+
+    <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+
+    <li class="dropdown order-1">
+
+        <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
+
+        <ul class="dropdown-menu dropdown-menu-right mt-1">
+
+          <li class="p-3">
+
+                <form class="form" role="form">
+
+                    <div class="form-group">
+                        <input id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
+                    </div>
+                    <div class="form-group">
+                        <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
+                    <div class="form-group text-xs-center">
+                        <small><a href="#">Forgot password?</a></small>
+                    </div>
+
+                </form>
+
+            </li>
+
+        </ul>
+
+    </li>
+    </ul>
+
+  </div>
+
+</nav>
+</div>
+
+<div>
+
+</div>
+
+
+<!--- search bar 
+<div class="container w3-display-container searchcontent">
+
+  <form class="search w3-display-middle">
+
+    <div >
+	
+	</div>
+	</div>
+    </div>
+
+
+
+    <input class="button searchbutton" type="submit" value='Search'>
+
+
+  </form>
+
+</div>
+-->
+
+<!--- main content area -->
+<div class="container w3-display-center maincontent">
+{% block body_block %}
+{% endblock %}
+</div>
+
+<!--- footer area
+<div class="container footer">
+
+</div> -->
+<div class="container">
+<center><p style='color: white; size:20px;'><em>Internet Technology Project by IT TAKES 4 TO DJANGO<em></p></center>
+</div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>
