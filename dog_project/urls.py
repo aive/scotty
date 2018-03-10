@@ -6,14 +6,17 @@ from django.conf.urls import include
 from dog import views
 
 urlpatterns = [
-    
+
     # INDEX [HOME]
     url(r'^$', views.index, name='index'),
+
+    # SEARCH
     
+
     # INCLUDE DOG APP URLS
     # [We have kept all of the urls in the app]
     url(r'^dog/', include('dog.urls')),
-    
+
     # ADMIN SITE
     url(r'^admin/', admin.site.urls),
     # REGISTRATION

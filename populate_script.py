@@ -25,7 +25,7 @@ def populate():
 
     ]
 
-        
+
     lowlands_cottages = [
     {"title": "Guildford", "address":"GU4","views": 20},
     {"title": "Hudderfield", "address":"HD2","views": 21},
@@ -57,7 +57,7 @@ def populate():
         r = add_reg(reg, reg_data["views"], reg_data["likes"])
         for c in reg_data["cottages"]:
             add_cottage(r, c["title"], c["address"], c["views"])
-        
+
     for r in Region.objects.all():
         for c in Cottage.objects.filter(region=r):
             print("- {0} - {1}".format(str(r), str(c)))
@@ -78,4 +78,3 @@ def add_reg(name, views=0, likes=0):
 if __name__ == '__main__':
         print("Starting BnB population script...")
         populate()
-
