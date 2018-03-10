@@ -4,6 +4,9 @@ from dog.models import UserProfile
 
 
 class CottageAdmin(admin.ModelAdmin):
+    prepoulated_fields = {'slug':('title',)}
+
+class RegionAdmin(admin.ModelAdmin):
     prepoulated_fields = {'slug':('name',)}
 
 class UserProfileAdmin(admin.ModelAdmin):
