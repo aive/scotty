@@ -13,7 +13,8 @@
 		{% if cottages %}
 			<ul>
 			{% for cottage in cottages %}
- 				<li>{{ cottage.address }}>{{ cottage.title }} </a></li>
+ 				<li><a href="{% url 'dog:show_cottage' cottage.slug %}">{{ cottage.name }}</a></li>
+				<li><img class='image' src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/></li>
 			{% endfor %}
 			</ul>
 		{% else %}
