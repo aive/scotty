@@ -27,21 +27,15 @@ def index(request):
    context_dict['visits'] = request.session['visits']
 
    print(request.session['visits'])
-
+   
    response = render(request, 'dog/index.html', context=context_dict)
    return response
 
 def about(request):
    context_dict = {}
-   visitor_cookie_handler(request)
+   visitor_cookie_handler(request) 
    context_dict['visits'] = request.session['visits']
    return render(request, 'dog/about.html', context=context_dict)
-
-def cottage(request):
-   context_dict = {}
-   visitor_cookie_handler(request)
-   context_dict['visits'] = request.session['visits']
-   return render(request, 'dog/cottage.html', context=context_dict)
 
 def show_region(request, region_name_slug):
    context_dict = {}
@@ -53,8 +47,19 @@ def show_region(request, region_name_slug):
    except Region.DoesNotExist:
       context_dict['cottages'] = None
       context_dict['region'] = None
-
+      
    return render(request, 'dog/region.html', context_dict)
+
+def show_cottage(request, cottage_name_slug):
+   context_dict = {}
+   try:
+      cottage = Cottage.objects.get(slug=cottage_name_slug)
+      context_dict['cottage'] = cottage
+   except Cottage.DoesNotExist:
+      context_dict['cottage'] = None
+
+      
+   return render(request, 'dog/cottage.html', context_dict)
 
 def add_region(request):
    form = RegionForm()
@@ -65,9 +70,9 @@ def add_region(request):
       if form.is_valid():
          reg = form.save(commit=True)
          print(reg, reg.slug)
-
+         
          return index(request)
-
+   
       else: print(form.errors)
    return render(request, 'dog/add_region.html', {'form':form})
 
@@ -77,7 +82,7 @@ def add_cottage(request, region_name_slug):
       region = Region.objects.get(slug=region_name_slug)
    except Region.DoesNotExist:
       region = None
-
+   
    form = CottageForm()
    if request.method == 'POST':
       form = CottageForm(request.POST)
@@ -90,8 +95,8 @@ def add_cottage(request, region_name_slug):
             return show_region(request, region_name_slug)
       else:
          print(form.errors)
-
-   context_dict = {'form':form, 'region':region}
+         
+   context_dict = {'form':form, 'region':region}      
    return render(request, 'dog/add_cottage.html', context_dict)
 
 
@@ -126,7 +131,10 @@ def visitor_cookie_handler(request):
          visits = visits + 1
          request.session['last_visit'] = str(datetime.now())
       else:
-
+         
          request.session['last_visit'] = last_visit_cookie
 
       request.session ['visits'] = visits
+
+      
+      
