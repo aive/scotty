@@ -1,5 +1,4 @@
 #######################################################################
-# DOG BNB Settings
 # It takes 4 to DJango
 #######################################################################
 import os
@@ -12,8 +11,6 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'yc5iy38t5=3cqr8w%jtdm1m5rvphe$_k@)c^^7u2&e_)_fsorg'
-
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -34,7 +31,7 @@ INSTALLED_APPS = [
     'dog',
     #REGISTRATION
     'registration',
-
+    
 ]
 
 MIDDLEWARE = [
@@ -67,11 +64,12 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # SOCIAL AUTH
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                'social_django.context_processors.backends',  
+                'social_django.context_processors.login_redirect', 
             ],
         },
     },
@@ -96,16 +94,9 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-# GOOGLE MAPS API
-YOUR_API_KEY = 'AIzaSyAMVM0EQg8IWIlJFoxiBnhWImVstfs9meQ'
-#RESTRICT_KEY =
-
 # SOCIAL AUTH FOR FACEBOOK
 SOCIAL_AUTH_FACEBOOK_KEY = '188912945045019'
 SOCIAL_AUTH_FACEBOOK_SECRET = '0dc7b2dcd6647b50c930a2081b1fdbf5'
-
-
-
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -138,9 +129,9 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
 # EMAIL [Used for contact form]
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
 DEFAULT_FROM_EMAIL = 'testing@example.com'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = False 
 EMAIL_PORT = 1025
