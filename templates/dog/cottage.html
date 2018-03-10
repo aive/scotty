@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends 'dog/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	{{ cottage.name }}
+{% endblock %}
+
+{% block body_block %}
+	{% if cottage %}
+		<h1>{{ cottage.name }}</h1>
+{% endblock %}

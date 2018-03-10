@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^region/(?P<region_name_slug>[\w\-]+)/$', views.show_region, name='show_region'),
     url(r'^region/(?P<region_name_slug>[\w\-]+)/add_cottage/$', views.add_cottage, name='add_cottage'),
     url(r'^restricted/', views.restricted, name='restricted'),
+    url(r'^cottage/$', views.cottage, name='cottage'),
     ]

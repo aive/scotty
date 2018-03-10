@@ -5,7 +5,7 @@
   <head>
 
 <title>
-DOG BNB - 
+SCOTTY -
 {% block title_block %}
 {% endblock %}
 </title>
@@ -19,15 +19,15 @@ DOG BNB -
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<script type="text/javascript">
-		
+
 		$(document).ready(function(){
 			// set the random image for the site background
 			// only requires the relative path to the STATIC FILES folder
 			var images = 10; // number of images
       // Get a random image from 1 to 10
-			var randImage = Math.floor(Math.random() * images) + 1; 
+			var randImage = Math.floor(Math.random() * images) + 1;
       // Change the background image
-			$(".background").css("background-image", "url('{% static "images/bg_" %}"+ randImage + ".jpg')");
+			//$(".background").css("background-image", "url('{% static "images/bg_" %}"+ randImage + ".jpg')");
 		});
 	</script>
 
@@ -36,18 +36,18 @@ DOG BNB -
 			height: 100%;
 			margin: 0;
 			font: 400 15px/1.8 "Myriad Pro", sans-serif;
-			color: #777;
+			color: #000;
 		}
-		.background { 
+		.background {
 			height: 100%;
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
-		
+
 		}
 		.container{
 			border-radius: 15px;
-			padding: 5%; 
+			padding: 5%;
 		}
 		.nav-item{
 			color: white;
@@ -55,29 +55,29 @@ DOG BNB -
 		div.menu {
 			width: 100%;
 			margin-top: 0px;
-			padding: 0px;	
-			
+			padding: 0px;
+
 		}
 		div.footer {
 			height:120px;
 			margin: 10px auto 20px auto;
 			padding: 0px;
-			background: rgba(255, 255, 255, 0.8);
+
 		}
-		
+
 		div.maincontent {
 			margin-top: 7.5%;
 			padding: 15px;
-    			background: rgba(255, 255, 255, 0.8);
-			
+
+
 		}
 		.navbar {
 			padding: 15px;
 			margin: 0px !important;
 
-	
+
 		}
-		
+
 		.button{
 			border: none;
    			color: white;
@@ -94,9 +94,9 @@ DOG BNB -
 		}
 
 		.searchbutton{
-    			background-color: white;
+    			background-color: #c0dfd9;
     			color: black;
-    			border: 2px solid #800000;
+    			border: 2px solid #c0dfd9;
 			//box-shadow: 1px 1px 11px #330033;
 		}
 
@@ -109,16 +109,16 @@ DOG BNB -
 			float: left;
       			position: relative;
 			padding-left: 10px;
-			padding-right: 10px;	
+			padding-right: 10px;
 		}
 		.region{
     			position: relative;
 		}
-			
+
 		#region{
 			overflow:hidden;
-			height: 7.5%; 
-   			width: 20%; 
+			height: 7.5%;
+   			width: 20%;
 			-moz-border-radius: 9px 9px 9px 9px;
    			-webkit-border-radius: 9px 9px 9px 9px;
    			border-radius: 9px 9px 9px 9px;
@@ -138,13 +138,13 @@ DOG BNB -
 			border-radius: 10px;
 			//box-shadow: 1px 1px 11px #330033;
 		}
-		
+
 	</style>
 
 </head>
 <body class='background'>
 
-<!--- nav content area --> 
+<!--- nav content area -->
 <div class="container menu">
 
 <nav  id="navbar" class="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -154,7 +154,9 @@ DOG BNB -
   </button>
 
   <a class="navbar-brand" href="/">
-    <img src="https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="DOG BNB">
+    <div>
+      <img src="{% static "images/logo_blue2.png" %}" width="150" alt="scotty logo" />
+    </div>
   </a>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
@@ -228,13 +230,13 @@ DOG BNB -
 </div>
 
 
-<!--- search bar 
+<!--- search bar
 <div class="container w3-display-container searchcontent">
 
   <form class="search w3-display-middle">
 
     <div >
-	
+
 	</div>
 	</div>
     </div>
@@ -260,7 +262,7 @@ DOG BNB -
 
 </div> -->
 <div class="container">
-<center><p style='color: white; size:20px;'><em>Internet Technology Project by IT TAKES 4 TO DJANGO<em></p></center>
+<center><p style='color: white; size:20px;'><em>Scotty Ltd.<em></p></center>
 </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
