@@ -2,16 +2,19 @@
 {% load staticfiles %}
 
 {% block title_block %}
-Homepage
+Home/Search
 {% endblock %}
 {% block body_block %}
 
 <div class="w3-display-container">
-  <h1 id="slogan" class="w3-display-middle"> SCOTTY! Find Dogfriendly cottages. </h1>
+  <img src="{% static "images/scotty-22.png" %}" width="200" alt="scotty" />
+  <h1> </h1>
+  <h1 id="slogan"> Find Dogfriendly cottages. </h1>
+  <p> </p>
 </div>
 
 
-<!--- search bar -->
+<!--- search bar
 <div class="container w3-display-container searchcontent">
 
   <form class="search w3-display-middle">
@@ -31,23 +34,26 @@ Homepage
 
 </form>
 </div>
-
+-->
 <!-- another search bar -->
 <div class="search-box-wrapper">
   <input type="text" placeholder="Search…" class="search-box-input">
-  <button class="search-box-button">&#128269;</button>
+  <button width="500" class="search-box-button">&#128269;</button>
 </div>
 
 <!-- Google map -->
 <div>
+  <h1> </h1>
+  <h1> </h1>
+
   <h1> Map</h1>
   <div id="map"></div>
-  <!-- Replace the value of the key parameter with your own API key. -->
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz9XGMk2hpR3-3cO8bBYNRAGwr87d9GWo&callback=initMap">
   /* maps css */
   </script>
 </div>
+
 
 
 
