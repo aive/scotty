@@ -7,11 +7,11 @@ class Region(models.Model):
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
-    
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Region, self).save(*args, **kwargs)
-    
+
     def __str__(self):
         return self.name
 
@@ -43,4 +43,3 @@ class UserProfile(models.Model):
 
 def __str__(self):
         return self.user.username
-

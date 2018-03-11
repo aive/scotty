@@ -1,7 +1,6 @@
 {% extends 'dog/base.html' %}
 {% load staticfiles %}
 
-<style></style>
 {% block title_block %}
 Homepage
 {% endblock %}
@@ -10,6 +9,7 @@ Homepage
 <div class="w3-display-container">
   <h1 id="slogan" class="w3-display-middle"> SCOTTY! Find Dogfriendly cottages. </h1>
 </div>
+
 
 <!--- search bar -->
 <div class="container w3-display-container searchcontent">
@@ -32,13 +32,22 @@ Homepage
 </form>
 </div>
 
+<!-- another search bar -->
+
+
 <div>
-  <h3>Map</h3>
+  <h1> Map</h1>
   <div id="map"></div>
   <!-- Replace the value of the key parameter with your own API key. -->
   <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz9XGMk2hpR3-3cO8bBYNRAGwr87d9GWo&callback=initMap">
+  /* maps css */
+
+
+
   </script>
 </div>
+
+
 
 {% endblock %}
