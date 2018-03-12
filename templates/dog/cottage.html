@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 {% extends 'dog/base.html' %}
 {% load staticfiles %}
 
@@ -7,8 +8,65 @@
 {% endblock %}
 
 {% block body_block %}
+
+
+
+<style>
+#googleMap {
+    width: 100%; /* Span the entire width of the screen */
+    height: 400px; /* Set the height to 400 pixels */
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); /* Change the color of the map to black and white * /
+}
+</style>
+	
 	{% if cottage %}
 		<h1>{{ cottage.name }}</h1>
-		<img class='image' src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/>
-	{% endif %}
+		<img class='image' src="{{ MEDIA_URL }}/cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/>
+
+<!-- Add Google Maps -->
+		<div id="googleMap"></div>
+		
+		
+		
+		
+		
+
+		 
+		</script>
+		<script>
+		
+		var latitude = "";
+		var longitude = "";
+		function myMap(latitude, longtitude) {
+		var myCenter = new google.maps.LatLng(latitude, longtitude);
+		var mapProp = {center:myCenter, zoom:12, scrollwheel:true, draggable:true, mapTypeId:google.maps.MapTypeId.ROADMAP};
+		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+		var marker = new google.maps.Marker({position:myCenter});
+		marker.setMap(map);
+		}
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB00LfqK4PTVFWJoEsHFDcE82ZZrXsivqw&callback=myMap"></script>
+		<script type="text/javascript">
+		var geocoder = new google.maps.Geocoder();
+		var address = "{{ cottage.address }}";
+		
+		geocoder.geocode( { 'address': address}, function(results, status) {
+
+  			if (status == google.maps.GeocoderStatus.OK) {
+    			var latitude = results[0].geometry.location.lat();
+    			var longitude = results[0].geometry.location.lng();
+    		 		 } 
+		myMap(latitude, longitude);
+		});
+		</script>
+		
+		{% endif %}
+	
+
+
+
+
+
+
 {% endblock %}
