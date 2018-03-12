@@ -12,6 +12,13 @@
 
 
 <style>
+.image {
+	width: 100%;
+	height: auto;
+	
+	}
+
+
 #googleMap {
     width: 100%; /* Span the entire width of the screen */
     height: 400px; /* Set the height to 400 pixels */
@@ -21,8 +28,12 @@
 </style>
 	
 	{% if cottage %}
-		<h1>{{ cottage.name }}</h1>
-		<img class='image' src="{{ MEDIA_URL }}/cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/>
+
+		<link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+		<div class="jumbotron">
+			<h1 class="display-3">{{ cottage.name }}</h1>
+		</div>
+		<img class='image' src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/>
 
 <!-- Add Google Maps -->
 		<div id="googleMap"></div>
@@ -46,17 +57,18 @@
 		marker.setMap(map);
 		}
 		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB00LfqK4PTVFWJoEsHFDcE82ZZrXsivqw&callback=myMap"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyB00LfqK4PTVFWJoEsHFDcE82ZZrXsivqw&callback=myMap"></script>
 		<script type="text/javascript">
 		var geocoder = new google.maps.Geocoder();
 		var address = "{{ cottage.address }}";
-		
 		geocoder.geocode( { 'address': address}, function(results, status) {
 
   			if (status == google.maps.GeocoderStatus.OK) {
     			var latitude = results[0].geometry.location.lat();
     			var longitude = results[0].geometry.location.lng();
-    		 		 } 
+			
+
+ 		 } 
 		myMap(latitude, longitude);
 		});
 		</script>
