@@ -12,39 +12,39 @@ from dog.models import Cottage
 def populate():
 
     highlands_cottages = [
-    {"name": "Aberdeenshire", "image": "Aberdeenshire.jpg", "address":"AB1","views": 20},
-    {"name": "Applecross", "image": "Applecross.jpg", "address":"IV54","views": 21},
-    {"name": "Stirling", "image": "Stirling.jpg", "address":"FK15","views": 10},
-    {"name": "Alvemore", "image": "Alvemore.jpg","address":"PH22","views": 220},
-    {"name": "BettyHill", "image": "BettyHill.jpg", "address":"KW14","views": 10},
-    {"name": "Braemar", "image": "Braemar.jpg", "address":"AB35","views": 520},
-    {"name": "Cannich", "image": "Cannich.jpg", "address":"IV4","views": 520},
-    {"name": "Corpach", "image": "Corpach.jpg","address":"PH33","views": 820},
-    {"name": "Dalwhinnie", "image": "Dalwhinnie.jpg", "address":"PH19","views": 22},
-    {"name": "Edderton", "image": "Edderton.jpg","address":"IV19", "views": 20}
+    {"name": "Aberdeenshire", "image": "Aberdeenshire.jpg", "address":"AB51 4GY","views": 20},
+    {"name": "Applecross", "image": "Applecross.jpg", "address":"IV54 8LR","views": 21},
+    {"name": "Stirling", "image": "Stirling.jpg", "address":"FK15 0HG","views": 10},
+    {"name": "Alvemore", "image": "Alvemore.jpg","address":"PH22 1RB","views": 220},
+    {"name": "BettyHill", "image": "BettyHill.jpg", "address":"KW14 8TY","views": 10},
+    {"name": "Braemar", "image": "Braemar.jpg", "address":"AB35 5XU","views": 520},
+    {"name": "Cannich", "image": "Cannich.jpg", "address":"IV4 7HR","views": 520},
+    {"name": "Corpach", "image": "Corpach.jpg","address":"PH33 6PF","views": 820},
+    {"name": "Dalwhinnie", "image": "Dalwhinnie.jpg", "address":"PH19 1AA","views": 22},
+    {"name": "Edderton", "image": "Edderton.jpg","address":"IV19 1EH", "views": 20}
 
     ]
 
 
     lowlands_cottages = [
-    {"name": "Guildford", "image": "Guildford.jpg", "address":"GU4","views": 20},
-    {"name": "Hudderfield", "image": "Hudderfield.jpg", "address":"HD2","views": 21},
-    {"name": "Dunbane", "image": "Dunbane.jpg", "address":"FK15","views": 10},
-    {"name": "Hereford", "image": "Hereford.jpg", "address":"HR2","views": 10},
-    {"name": "Beauly", "image": "Beauly.jpg", "address":"IV4","views": 520},
-    {"name": "Ayr", "image": "Ayr.jpg", "address":"KA7","views": 420},
-    {"name": "Cupar", "image": "Cupar.jpg", "address":"KY15", "views": 20}
+    {"name": "Guildford", "image": "Guildford.jpg", "address":"GU4 8SE","views": 20},
+    {"name": "Hudderfield", "image": "Hudderfield.jpg", "address":"HD2 1YY","views": 21},
+    {"name": "Dunbane", "image": "Dunbane.jpg", "address":"FK15 0NB","views": 10},
+    {"name": "Hereford", "image": "Hereford.jpg", "address":"HR2 6JT","views": 10},
+    {"name": "Beauly", "image": "Beauly.jpg", "address":"IV40 8DX","views": 520},
+    {"name": "Ayr", "image": "Ayr.jpg", "address":"KA7 4PQ","views": 420},
+    {"name": "Cupar", "image": "Cupar.jpg", "address":"KY15 7HY", "views": 20}
     ]
 
 
     islands_cottages = [
-    {"name": "Belfast", "image": "Belfast.jpg","address":"BT1","views": 20},
-    {"name": "Newcastle", "image": "Newcastle.jpg","address":"BT33","views": 21},
-    {"name": "Ballymena", "image": "Ballymena.jpg","address":"BT44","views": 10},
-    {"name": "Newtownnards", "image": "Newtownnards.jpg","address":"BT52","views": 230},
-    {"name": "Dungannon", "image": "Dungannon.jpg", "address":"BT70","views": 12},
-    {"name": "Isle of Man", "image": "Isle of Man.jpg","address":" IM3","views": 520},
-    {"name": "Isles of Scilly", "image": "Isles of Scilly.jpg","address":"TR23","views": 230}
+    {"name": "Belfast", "image": "Belfast.jpg","address":"BT18 9JQ","views": 20},
+    {"name": "Newcastle", "image": "Newcastle.jpg","address":"BT3 9JL","views": 21},
+    {"name": "Ballymena", "image": "Ballymena.jpg","address":"BT44 8SB","views": 10},
+    {"name": "Newtownnards", "image": "Newtownnards.jpg","address":"BT52 2NS","views": 230},
+    {"name": "Dungannon", "image": "Dungannon.jpg", "address":"BT70 2HW","views": 12},
+    {"name": "Isle of Man", "image": "Isle of Man.jpg","address":"IM3 1BB","views": 520},
+    {"name": "Isles of Scilly", "image": "Isles of Scilly.jpg","address":"TR23 0WA","views": 230}
 
     ]
     
@@ -79,4 +79,3 @@ def add_reg(name, views=0, likes=0):
 if __name__ == '__main__':
         print("Starting population script...")
         populate()
-
