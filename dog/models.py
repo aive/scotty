@@ -1,6 +1,11 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.files.base import ContentFile
+from django.core.files import File
+import os
 
 class Region(models.Model):
     name = models.CharField(max_length=128, unique=True)
@@ -19,6 +24,7 @@ class Cottage(models.Model):
     region = models.ForeignKey(Region)
     name = models.CharField(max_length=128)
     image = models.ImageField(upload_to='cottages', blank=True)
+    
     address = models.CharField(max_length=128, blank=True)
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True, blank=True)
@@ -29,8 +35,8 @@ class Cottage(models.Model):
 
     def __str__(self):
         return self.name
-
-'''    @property
+       
+    '''@property
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
