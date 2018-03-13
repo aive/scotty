@@ -1,17 +1,23 @@
-<ul>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div class="w3-container">
+
+</style>
+<ul class="w3-ul w3-hoverable" align="center">
 {% if regs %}
 	{% for r in regs %}
-		{% if r == act_reg %}
+	
+			
 			<li>
+			
 			<strong>
 			<a href="{% url 'dog:show_region' r.slug %}">{{ r.name }}</a>
 			</strong>	
 			</li>
-		{% else %}
-			<li>
-			<a href="{% url 'dog:show_region' r.slug %}">{{ r.name }}</a>
-			</li>
-		{% endif %}
+			
+			
 	{% endfor %}
 {% endif %}
 </ul>
+</div>
