@@ -33,6 +33,7 @@
 		<link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
 		<div class="jumbotron">
 			<h1 class="display-3">{{ cottage.name }}</h1>
+			<a href="{% url 'dog:review' cottage.slug %}">Review Cottage</a>
 		</div>
 		<img class='image' src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/>
 
