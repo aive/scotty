@@ -24,18 +24,7 @@ def populate():
     {"name": "Edderton", "image": "cottages/Edderton.jpg","address":"IV19 1EH", "views": 20}
 
     ]
-    for cottage in highlands_cottages:
-
-        cottage_object = Cottage.objects.get_or_create(name=cottage['name'])[0]
-        cottage_object.image = cottage['image']
-        cottage_object.save()
-
-        print(cottage_object)
-        
-        print(cottage)
-
-    print('=====')
-
+    
 
     
     lowlands_cottages = [
@@ -47,17 +36,7 @@ def populate():
     {"name": "Ayr", "image": "cottages/Ayr.jpg", "address":"KA7 4PQ","views": 420},
     {"name": "Cupar", "image": "cottages/Cupar.jpg", "address":"KY15 7HY", "views": 20}
     ]
-    for cottage in lowlands_cottages:
-        cottage_object = Cottage.objects.get_or_create(name=cottage['name'])[0]
-        cottage_object.image = cottage['image']
-        cottage_object.save()
-
-        print(cottage_object)
-        
-        print(cottage)
-
-    print('=====')
-
+   
     islands_cottages = [
     {"name": "Belfast", "image": "cottages/Belfast.jpg","address":"BT18 9JQ","views": 20},
     {"name": "Newcastle", "image": "cottages/Newcastle.jpg","address":"BT3 9JL","views": 21},
@@ -68,17 +47,7 @@ def populate():
     {"name": "Isles of Scilly", "image": "cottages/Isles of Scilly.jpg","address":"TR23 0WA","views": 230}
 
     ]
-    for cottage in islands_cottages:
-        cottage_object = Cottage.objects.get_or_create(name=cottage['name'])[0]
-        cottage_object.image = cottage['image']
-        cottage_object.save()
-
-        print(cottage_object)
-        
-        print(cottage)
-
-    print('=====')
-
+    
     
 
 
@@ -93,6 +62,38 @@ def populate():
             add_cottage(r, c["name"], c["address"], c["views"])
 
     
+    for cottage in islands_cottages:
+        cottage_object = Cottage.objects.get_or_create(name=cottage['name'])[0]
+        cottage_object.image = cottage['image']
+        cottage_object.save()
+
+        print(cottage_object)
+        
+        print(cottage)
+
+    print('=====')
+
+    for cottage in lowlands_cottages:
+        cottage_object = Cottage.objects.get_or_create(name=cottage['name'])[0]
+        cottage_object.image = cottage['image']
+        cottage_object.save()
+
+        print(cottage_object)
+        
+        print(cottage)
+
+    print('=====')
+
+    for cottage in highlands_cottages:
+        cottage_object = Cottage.objects.get_or_create(name=cottage['name'])[0]
+        cottage_object.image = cottage['image']
+        cottage_object.save()
+
+        print(cottage_object)
+        
+        print(cottage)
+
+    print('=====')
 
 
     
