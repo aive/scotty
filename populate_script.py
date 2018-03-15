@@ -116,6 +116,14 @@ def add_reg(name, views=0, likes=0):
         r.save()
         return r
 
+def add_review(cottage_object, name, comment, date_added):
+        comment = Comment.objects.get_or_create(comment=com, name=name)[0]
+        com.comment=comment
+        com.date_added=date_added
+        com.save()
+        return comment
+
+
 if __name__ == '__main__':
         print("Starting population script...")
         populate()
