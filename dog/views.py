@@ -1,11 +1,13 @@
 from registration.backends.simple.views import RegistrationView
 from django.shortcuts import render_to_response
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from dog.models import Region
+from dog.models import Comment
 from dog.models import Cottage
 from dog.forms import RegionForm
 from dog.forms import CottageForm
+from dog.forms import CommentForm
 from dog.forms import UserForm
 from dog.forms import UserProfileForm
 from django.contrib.auth import authenticate, login
@@ -78,26 +80,62 @@ def add_region(request):
 
 
 def add_cottage(request, region_name_slug):
-   try:
-      region = Region.objects.get(slug=region_name_slug)
-   except Region.DoesNotExist:
-      region = None
-   
-   form = CottageForm()
-   if request.method == 'POST':
-      form = CottageForm(request.POST)
-      if form.is_valid():
-         if region:
-            cottage = form.save(commit=False)
-            cottage.region = region
-            cottage.views = 0
-            cottage.save()
-            return show_region(request, region_name_slug)
+      try:
+            region = Region.objects.get(slug=region_name_slug)
+      except Region.DoesNotExist:
+            region = None
+
+      form = CottageForm()
+      if request.method == 'POST':
+            form = CottageForm(request.POST)
+            if form.is_valid():
+                  if region:
+                        cottage = form.save(commit=False)
+                        cottage.region = region
+                        cottage.views = 0
+                        cottage.save()
+                        return show_region(request, region_name_slug)
+                  else:
+                        print(form.errors)
+
+      context_dict = {'form':form, 'region':region}      
+      return render(request, 'dog/add_cottage.html', context_dict)
+
+
+
+def review(request, cottage_name_slug):
+      context_dict = {}
+      try:
+            cottage = Cottage.objects.get(slug=cottage_name_slug)
+      except CottageDoesNotExist:
+            cottage = None
+
+      comments = Comment.objects.order_by('-date_added')
+      context = {'comments' : comments, 'cottage':cottage}
+      return render (request, 'dog/review.html', context)
+
+
+def sign(request, cottage_name_slug):
+      try:
+            cottage = Cottage.objects.get(slug=cottage_name_slug)   
+      except Cottage.DoesNotExist:
+            cottage = None
+
+      form = CommentForm()
+      if request.method == 'POST':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                  new_comment = Comment(name=request.POST['name'],comment=request.POST['comment'])
+                  new_comment.cottage = cottage
+                  new_comment.save()
+                  return review(request, cottage_name_slug)
+            else:
+                  print(form.errors)
       else:
-         print(form.errors)
-         
-   context_dict = {'form':form, 'region':region}      
-   return render(request, 'dog/add_cottage.html', context_dict)
+            form = CommentForm()
+                  
+      context_dict = {'form' : form, 'cottage': cottage}
+      return render (request, 'dog/sign.html', context_dict)
 
 
 @login_required

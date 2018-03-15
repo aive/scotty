@@ -1,8 +1,16 @@
 from django import forms
+from dog.models import Comment
 from dog.models import Cottage
 from dog.models import Region
 from dog.models import UserProfile
 from django.contrib.auth.models import User 
+
+class CommentForm (forms.Form):
+    name = forms.CharField(max_length=20, help_text="Please enter the Your Name.")
+    comment = forms.CharField (help_text="Please enter your comment.")
+    class Meta:
+        model = Comment
+        exclude = ('cottage',)
 
 class RegionForm(forms.ModelForm):
     name = forms.CharField(max_length=128, help_text="Please enter the region name.")
