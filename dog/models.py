@@ -1,11 +1,16 @@
+from __future__ import unicode_literals
+
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.utils.text import slugify
 from django.contrib.auth.models import User
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files.base import ContentFile
 from django.core.files import File
 from django.utils import timezone
+from django.conf import settings
+from django.core.urlresolvers import reverse
 import os
 
 class Region(models.Model):
@@ -26,17 +31,29 @@ class Cottage(models.Model):
     region = models.ForeignKey(Region)
     name = models.CharField(max_length=128)
     image = models.ImageField(upload_to='cottages', blank=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='cottage_likes')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     address = models.CharField(max_length=128, blank=True)
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True, blank=True)
     
-
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Cottage, self).save(*args, **kwargs)
 
+    def __unicode__(self):
+        return self.name
+
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("dog:show_cottage", args=[self.slug])
+    
+    def get_like_url(self):
+        return reverse("dog:like-toggle", args=[self.slug])
+    
+
 
 class Comment(models.Model):
     name = models.CharField(max_length=20, blank=True)

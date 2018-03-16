@@ -1,22 +1,18 @@
 from registration.backends.simple.views import RegistrationView
-from django.shortcuts import render_to_response
-from django.shortcuts import render, redirect
+from django.shortcuts import render_to_response,  get_object_or_404, render, redirect
 from django.http import HttpResponse
-from dog.models import Region
-from dog.models import Comment
-from dog.models import Cottage
-from dog.forms import RegionForm
-from dog.forms import CottageForm
-from dog.forms import CommentForm
-from dog.forms import UserForm
-from dog.forms import UserProfileForm
+from dog.models import Region, Comment, Cottage
+from dog.forms import RegionForm, CottageForm, CommentForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.contenttypes.models import ContentType
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from datetime import datetime
 from django.template import RequestContext
+from django.views.generic import RedirectView
 
 def index(request):
 
@@ -63,8 +59,23 @@ def show_cottage(request, cottage_name_slug):
       context_dict['comments'] = None
       context_dict['cottage'] = None
 
-      
    return render(request, 'dog/cottage.html', context_dict)
+
+class CottageLikeToggle(RedirectView):
+    def get_redirect_url(self, cottage_name_slug):
+        print(self)
+        slug = cottage_name_slug
+        print(slug)
+        obj = get_object_or_404(Cottage, slug=slug)
+        url_ = obj.get_absolute_url()
+        user = self.request.user
+        if user.is_authenticated():
+            if user in obj.likes.all():
+                obj.likes.remove(user)
+            else:
+                obj.likes.add(user)
+        return url_
+
 
 def add_region(request):
    form = RegionForm()
@@ -80,6 +91,7 @@ def add_region(request):
    
       else: print(form.errors)
    return render(request, 'dog/add_region.html', {'form':form})
+
 
 
 def add_cottage(request, region_name_slug):

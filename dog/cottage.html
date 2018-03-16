@@ -1,0 +1,112 @@
+ <!DOCTYPE html>
+
+{% extends 'dog/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	{{ cottage.name }}
+{% endblock %}
+
+{% block body_block %}
+
+
+
+<style>
+.image {
+	width: 100%;
+	height: auto;
+	
+	}
+
+
+#googleMap {
+    width: 100%; /* Span the entire width of the screen */
+    height: 400px; /* Set the height to 400 pixels */
+    /* -webkit-filter: grayscale(100%);*/
+    /* filter: grayscale(100%); Change the color of the map to black and white */
+		}
+
+</style>
+	
+	{% if cottage %}
+
+		<link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+		<div class="jumbotron">
+			<h1 class="display-3">{{ cottage.name }}</h1>
+			<a href="{% url 'dog:sign' cottage.slug %}">Review Cottage</a>
+		</div>
+		<img class='image' src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/>
+		<div id="comments">
+		<div class="w3-display-container id="comment_section">
+		<p> Likes: {{ cottage.likes.count }} <a href="{{ cottage.get_like_url }}">Like</a> </p>
+		{% if comments %}
+ 
+			           
+			{% for c in comments %}
+      	      
+				
+				<div class="comment_header">
+              
+				<h1>{{c.name}} {{ c.date_added }}</h1>
+            
+				</div>
+            
+				<div class="comment">
+              
+				<p>{{c.comment}}.</p>
+            
+				</div>
+				         
+			{% endfor %}
+            
+		{% endif %}
+            
+		</div>   
+		</div
+		<!-- Add Google Maps -->
+		<div id="googleMap"></div>
+		
+		
+		
+		
+		
+
+		 
+		</script>
+		<script>
+		
+		var latitude = "";
+		var longitude = "";
+		function myMap(latitude, longtitude) {
+		var myCenter = new google.maps.LatLng(latitude, longtitude);
+		var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:true, mapTypeId:google.maps.MapTypeId.ROADMAP};
+		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+		var marker = new google.maps.Marker({position:myCenter});
+		marker.setMap(map);
+		}
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyB00LfqK4PTVFWJoEsHFDcE82ZZrXsivqw&callback=myMap"></script>
+		<script type="text/javascript">
+		var geocoder = new google.maps.Geocoder();
+		var address = "{{ cottage.address }}";
+		geocoder.geocode( { 'address': address}, function(results, status) {
+
+  			if (status == google.maps.GeocoderStatus.OK) {
+    			var latitude = results[0].geometry.location.lat();
+    			var longitude = results[0].geometry.location.lng();
+			
+
+ 		 } 
+		myMap(latitude, longitude);
+		});
+		</script>
+		
+		{% endif %}
+	
+
+
+
+
+
+
+		{% endblock %}
