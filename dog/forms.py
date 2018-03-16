@@ -6,8 +6,8 @@ from dog.models import UserProfile
 from django.contrib.auth.models import User 
 
 class CommentForm (forms.Form):
-    name = forms.CharField(max_length=20, help_text="Please enter the Your Name.")
-    comment = forms.CharField (help_text="Please enter your comment.")
+    name = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder':'Name'}))
+    comment = forms.CharField (widget=forms.Textarea(attrs={'class' : 'form-control' ,'placeholder' : 'Comment'}))
     date_added = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
     class Meta:
         model = Comment
