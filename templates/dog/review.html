@@ -1,51 +1,85 @@
 {% extends 'dog/base.html' %}
+
 {% load staticfiles%}
+
 
 {% block body_block %}
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<meta charset="utf-8">
+    
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+   
+ <meta name="description" content="">
+    
+<meta name="author" content="">
 
-    <title>Review our BnB</title>
+   
+ <title>Review our BnB</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'review/bootstrap.min.css' %}"rel="stylesheet"> 
-    <!-- Bootstrap theme -->
-    <link href="{% static 'review/bootstrap-theme.min.css'%} " rel="stylesheet">
+    
+<!-- Bootstrap core CSS -->
+   
+ <link href="{% static 'review/bootstrap.min.css' %}"rel="stylesheet"> 
+   
+ <!-- Bootstrap theme -->
+    
+<link href="{% static 'review/bootstrap-theme.min.css'%} " rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+   
+ <!-- Custom styles for this template -->
     <link href="{% static 'review/theme.css'%}" rel="stylesheet">
 
-  </head>
+  
+</head>
 
   <body>
 
     <div class="container theme-showcase" role="main">
 
       <div class="jumbotron">
-        <h1>Reviews for {{cottage.slug }}</h1>
-        <a type="button" class="btn btn-link" href="{% url 'dog:sign' cottage.slug %}">Sign in to send your reviews</a>
-      </div>
+      
+  <h1>Reviews for {{cottage.slug }}</h1>
+       
+ <a type="button" class="btn btn-link" href="{% url 'dog:sign' cottage.slug %}">Sign in to send your reviews</a>
+     
+ </div>
 
 
-      {% if cottage %}
-            {% if comments %}
-            {% for c in comments %}
-            <div class="page-header">
-              <h1>{{c.name}}</h1>
-            </div>
-            <div class="well">
-              <p>{{c.comment}}.</p>
-            </div>
-            {% endfor %}
-            {% endif %}
-            {% endif %}
-      </div> <!-- /container -->
+      
+{% if cottage %}
+            
+	{% if comments %}
+            
+		{% for c in comments %}
+            
+		<div class="page-header">
+              
+	<h1>{{c.name}}</h1>
+            
+		</div>
+            
+	<div class="well">
+              
+	<p>{{c.comment}}.</p>
+            
+	</div>
+            
+		{% endfor %}
+            
+	{% endif %}
+            
+	{% endif %}
+      
+	</div> <!-- /container -->
 
-  </body>
+  
+	</body>
 
-  {% endblock %}
+  
+	{% endblock %}
+
