@@ -56,8 +56,11 @@ def show_cottage(request, cottage_name_slug):
    context_dict = {}
    try:
       cottage = Cottage.objects.get(slug=cottage_name_slug)
+      comments = Comment.objects.filter(cottage=cottage)
+      context_dict['comments'] = comments
       context_dict['cottage'] = cottage
    except Cottage.DoesNotExist:
+      context_dict['comments'] = None
       context_dict['cottage'] = None
 
       
@@ -125,12 +128,13 @@ def sign(request, cottage_name_slug):
       if request.method == 'POST':
             form = CommentForm(request.POST)
             if form.is_valid():
-                  new_comment = Comment(name=request.POST['name'],comment=request.POST['comment'])
-                  new_comment.cottage = cottage
-                  new_comment.save()
-                  return review(request, cottage_name_slug)
-            else:
-                  print(form.errors)
+                  if cottage:
+                     new_comment = Comment(name=request.POST['name'],comment=request.POST['comment'])
+                     new_comment.cottage = cottage
+                     new_comment.save()
+                     return show_cottage(request, cottage_name_slug)
+                  else:
+                     print(form.errors)
       else:
             form = CommentForm()
                   

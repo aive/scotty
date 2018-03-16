@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 class CommentForm (forms.Form):
     name = forms.CharField(max_length=20, help_text="Please enter the Your Name.")
     comment = forms.CharField (help_text="Please enter your comment.")
+    date_added = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
     class Meta:
         model = Comment
         exclude = ('cottage',)
