@@ -12,39 +12,39 @@ from dog.models import Cottage
 def populate():
 
     highlands_cottages = [
-    {"name": "Aberdeenshire", "image": "cottages/Aberdeenshire.jpg", "address":"AB51 4GY","views": 20},
-    {"name": "Applecross", "image": "cottages/Applecross.jpg", "address":"IV54 8LR","views": 21},
-    {"name": "Stirling", "image": "cottages/Stirling.jpg", "address":"FK15 0HG","views": 10},
-    {"name": "Aviemore", "image": "cottages/Aviemore.jpg","address":"PH22 1RB","views": 220},
-    {"name": "BettyHill", "image": "cottages/BettyHill.jpg", "address":"KW14 8TY","views": 10},
-    {"name": "Braemar", "image": "cottages/Braemar.jpg", "address":"AB35 5XU","views": 520},
-    {"name": "Cannich", "image": "cottages/Cannich.jpg", "address":"IV4 7HR","views": 520},
-    {"name": "Corpach", "image": "cottages/Corpach.jpg","address":"PH33 6PF","views": 820},
-    {"name": "Dalwhinnie", "image": "cottages/Dalwhinnie.jpg", "address":"PH19 1AA","views": 22},
-    {"name": "Edderton", "image": "cottages/Edderton.jpg","address":"IV19 1EH", "views": 20}
+    {"name": "The Burrow", "area":"Aberdeenshire", "image": "cottages/The Burrow.jpg", "address":"AB51 4GY","views": 20},
+    {"name": "Windyridge", "area": "Applecross", "image": "cottages/Windyridge.jpg", "address":"IV54 8LR","views": 21},
+    {"name": "Garden Cottage", "area": "Stirling", "image": "cottages/Garden Cottage.jpg", "address":"FK15 0HG","views": 10},
+    {"name": "Four Winds", "area": "Aviemore", "image": "cottages/Four Winds.jpg","address":"PH22 1RB","views": 220},
+    {"name": "Wild Bank", "area": "BettyHill", "image": "cottages/Wild Bank.jpg", "address":"KW14 8TY","views": 10},
+    {"name": "Mile End", "area": "Braemar", "image": "cottages/Mile End.jpg", "address":"AB35 5XU","views": 520},
+    {"name": "Dreamwood", "area": "Cannich", "image": "cottages/Dreamwood.jpg", "address":"IV4 7HR","views": 520},
+    {"name": "Stillness", "area": "Corpach", "image": "cottages/Stillness.jpg","address":"PH33 6PF","views": 820},
+    {"name": "Bridgelands", "area": "Dalwhinnie", "image": "cottages/Bridgelands.jpg", "address":"PH19 1AA","views": 22},
+    {"name": "Dengarden", "area": "Edderton", "image": "cottages/Dengarden.jpg","address":"IV19 1EH", "views": 20}
 
     ]
 
 
 
     lowlands_cottages = [
-    {"name": "Guildford", "image": "cottages/Guildford.jpg", "address":"GU4 8SE","views": 20},
-    {"name": "Hudderfield", "image": "cottages/Hudderfield.jpg", "address":"HD2 1YY","views": 21},
-    {"name": "Dunbane", "image": "cottages/Dunbane.jpg", "address":"FK15 0NB","views": 10},
-    {"name": "Hereford", "image": "cottages/Hereford.jpg", "address":"HR2 6JT","views": 10},
-    {"name": "Beauly", "image": "cottages/Beauly.jpg", "address":"IV40 8DX","views": 520},
-    {"name": "Ayr", "image": "cottages/Ayr.jpg", "address":"KA7 4PQ","views": 420},
-    {"name": "Cupar", "image": "cottages/Cupar.jpg", "address":"KY15 7HY", "views": 20}
+    {"name": "Kuredu", "area":"Guildford", "image": "cottages/Kuredu.jpg", "address":"GU4 8SE","views": 20},
+    {"name": "Cumfrubrum", "area":"Hudderfield", "image": "cottages/Cumfrubrum.jpg", "address":"HD2 1YY","views": 21},
+    {"name": "Chestnuts", "area":"Dunbane", "image": "cottages/Chestnuts.jpg", "address":"FK15 0NB","views": 10},
+    {"name": "The Warren", "area":"Hereford", "image": "cottages/The Warren.jpg", "address":"HR2 6JT","views": 10},
+    {"name": "The Cuckoo's Nest", "area":"Beauly", "image": "cottages/The Cuckoo's Nest.jpg", "address":"IV40 8DX","views": 520},
+    {"name": "Crystal Cottage", "area":"Ayr", "image": "cottages/Crystal Cottage.jpg", "address":"KA7 4PQ","views": 420},
+    {"name": "Kites Farm", "area":"Cupar", "image": "cottages/Kites Farm.jpg", "address":"KY15 7HY", "views": 20}
     ]
 
     islands_cottages = [
-    {"name": "Belfast", "image": "cottages/Belfast.jpg","address":"BT18 9JQ","views": 20},
-    {"name": "Newcastle", "image": "cottages/Newcastle.jpg","address":"BT3 9JL","views": 21},
-    {"name": "Ballymena", "image": "cottages/Ballymena.jpg","address":"BT44 8SB","views": 10},
-    {"name": "Newtownnards", "image": "cottages/Newtownnards.jpg","address":"BT52 2NS","views": 230},
-    {"name": "Dungannon", "image": "cottages/Dungannon.jpg", "address":"BT70 2HW","views": 12},
-    {"name": "Isle of Man", "image": "cottages/Isle of Man.jpg","address":"IM3 1BB","views": 520},
-    {"name": "Isles of Scilly", "image": "cottages/Isles of Scilly.jpg","address":"TR23 0WA","views": 230}
+    {"name": "Robins Hedge", "area":"Belfast", "image": "cottages/Robins Hedge.jpg","address":"BT18 9JQ","views": 20},
+    {"name": "Heatherbell", "area":"Newcastle", "image": "cottages/Heatherbell.jpg","address":"BT3 9JL","views": 21},
+    {"name": "Chimney Cottage", "area":"Ballymena", "image": "cottages/Chimney Cottage.jpg","address":"BT44 8SB","views": 10},
+    {"name": "Rosemary House", "area":"Newtownnards", "image": "cottages/Rosemary House.jpg","address":"BT52 2NS","views": 230},
+    {"name": "Mulberry", "area":"Dungannon", "image": "cottages/Mulberry.jpg", "address":"BT70 2HW","views": 12},
+    {"name": "Stonehurst", "area":"Isle of Man", "image": "cottages/Stonehurst.jpg","address":"IM3 1BB","views": 520},
+    {"name": "Seacrest", "area":"Isles of Scilly", "image": "cottages/Seacrest.jpg","address":"TR23 0WA","views": 230}
 
     ]
 
