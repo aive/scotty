@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'dog',
     #REGISTRATION
     'registration',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -68,8 +68,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # SOCIAL AUTH
-                'social_django.context_processors.backends',  
-                'social_django.context_processors.login_redirect', 
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -129,9 +129,9 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
 # EMAIL [Used for contact form]
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'testing@example.com'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False 
+EMAIL_USE_TLS = False
 EMAIL_PORT = 1025

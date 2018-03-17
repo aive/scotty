@@ -3,7 +3,10 @@ from dog.models import Comment
 from dog.models import Cottage
 from dog.models import Region
 from dog.models import UserProfile
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
+
+
+
 
 class CommentForm (forms.Form):
     name = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder':'Name'}))
@@ -46,9 +49,8 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
-        
+
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'picture')
-
