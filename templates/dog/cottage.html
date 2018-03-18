@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
 {% extends 'dog/base.html' %}
 {% load staticfiles %}
@@ -27,17 +27,64 @@
 		}
 
 </style>
+<link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+<!---<script type="text/javascript" src="{% static '/js/jquery.js'%}"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!---<script>
+		
+
+		$(document).ready(function(){
+			 function updateText(btn, newCount, verb){
+			 btn.text(newCount + " " + verb)
+		 }
+		 $(".like-btn").click(function(e){
+		   e.preventDefault()
+		   var this_ = $(this)
+		   var likeUrl = this_.attr("data-href")
+		   var likeCount = parseInt(this_.attr("data-likes")) | 0
+		   console.log(likeCount)
+		   var addLike = likeCount + 1
+		   var removeLike = likeCount - 1
+		   if (likeUrl){
+			   $.ajax({
+
+			   url: likeUrl,
+			   method: "GET",
+			   data: {},
+			   success: function(data){
+				 console.log(data)
+				 var newLikes;
+				 if (data.liked){
+					 updateText(this_, addLike, "Unlike")
+				 } else {
+					 updateText(this_, removeLike, "Like")
+					 // remove one like
+				 }
+			   }, error: function(error){
+				 console.log(error)
+				 console.log("error")
+			   }
+			 });
+		   }
+		  
+		 });
+	 })
+	   </script>-->
 	
 	{% if cottage %}
 
-		<link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+		
+
+		
 		<div class="jumbotron">
 			<h1 class="display-3">{{ cottage.name }}</h1>
 			<a href="{% url 'dog:sign' cottage.slug %}">Review Cottage</a>
 		</div>
 		<img class='image' src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/>
 		<div id="comments">
-		<div class="w3-display-container id="comment_section">
+		<div class="w3-display-container" id="commentsection">
+		<p id="likes"> </p> <a href='{{ cottage.get_like_url }}'class='like-btn' >Like </a>
 		{% if comments %}
  
 			           
@@ -74,6 +121,19 @@
 		</script>
 		<script>
 		
+		
+		$(document).ready(function(){
+			var likes= parseInt({{ cottage.likes.count }}) 
+			if (likes==1){
+				$('#likes').html();
+				$('#likes').text("{{ cottage.likes.count }} Like");
+			}
+			else {
+				$('#likes').html();
+				$('#likes').text("{{ cottage.likes.count }} Likes");
+			}
+		})
+
 		var latitude = "";
 		var longitude = "";
 		function myMap(latitude, longtitude) {
