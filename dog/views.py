@@ -14,7 +14,6 @@ from datetime import datetime
 from django.template import RequestContext
 from django.views.generic import RedirectView
 
-
 def index(request):
 
    request.session.set_test_cookie()
@@ -26,15 +25,15 @@ def index(request):
    context_dict['visits'] = request.session['visits']
 
    print(request.session['visits'])
-
+   
    response = render(request, 'dog/index.html', context=context_dict)
    return response
 
-def regions(request):
+def about(request):
    context_dict = {}
-   visitor_cookie_handler(request)
+   visitor_cookie_handler(request) 
    context_dict['visits'] = request.session['visits']
-   return render(request, 'dog/regions.html', context=context_dict)
+   return render(request, 'dog/about.html', context=context_dict)
 
 def show_region(request, region_name_slug):
    context_dict = {}
@@ -46,7 +45,7 @@ def show_region(request, region_name_slug):
    except Region.DoesNotExist:
       context_dict['cottages'] = None
       context_dict['region'] = None
-
+      
    return render(request, 'dog/region.html', context_dict)
 
 def show_cottage(request, cottage_name_slug):
@@ -77,6 +76,34 @@ class CottageLikeToggle(RedirectView):
                 obj.likes.add(user)
         return url_
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
+
+# class CottageLikeAPIToggle(APIView):
+#     authentication_classes = (authentication.SessionAuthentication,)
+#     permission_classes = (permissions.IsAuthenticated,)
+
+#     def get(self, request, slug=None, format=None):
+#         # slug = self.kwargs.get("slug")
+#         obj = get_object_or_404(Post, slug=slug)
+#         url_ = obj.get_absolute_url()
+#         user = self.request.user
+#         updated = False
+#         liked = False
+#         if user.is_authenticated():
+#             if user in obj.likes.all():
+#                 liked = False
+#                 obj.likes.remove(user)
+#             else:
+#                 liked = True
+#                 obj.likes.add(user)
+#             updated = True
+#         data = {
+#             "updated": updated,
+#             "liked": liked
+#         }
+#         return Response(data)
 
 def add_region(request):
    form = RegionForm()
@@ -87,9 +114,9 @@ def add_region(request):
       if form.is_valid():
          reg = form.save(commit=True)
          print(reg, reg.slug)
-
+         
          return index(request)
-
+   
       else: print(form.errors)
    return render(request, 'dog/add_region.html', {'form':form})
 
@@ -114,7 +141,7 @@ def add_cottage(request, region_name_slug):
                   else:
                         print(form.errors)
 
-      context_dict = {'form':form, 'region':region}
+      context_dict = {'form':form, 'region':region}      
       return render(request, 'dog/add_cottage.html', context_dict)
 
 
@@ -133,7 +160,7 @@ def review(request, cottage_name_slug):
 
 def sign(request, cottage_name_slug):
       try:
-            cottage = Cottage.objects.get(slug=cottage_name_slug)
+            cottage = Cottage.objects.get(slug=cottage_name_slug)   
       except Cottage.DoesNotExist:
             cottage = None
 
@@ -150,7 +177,7 @@ def sign(request, cottage_name_slug):
                      print(form.errors)
       else:
             form = CommentForm()
-
+                  
       context_dict = {'form' : form, 'cottage': cottage}
       return render (request, 'dog/sign.html', context_dict)
 
@@ -186,7 +213,10 @@ def visitor_cookie_handler(request):
          visits = visits + 1
          request.session['last_visit'] = str(datetime.now())
       else:
-
+         
          request.session['last_visit'] = last_visit_cookie
 
       request.session ['visits'] = visits
+
+      
+      

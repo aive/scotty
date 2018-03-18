@@ -53,6 +53,9 @@ class Cottage(models.Model):
     def get_like_url(self):
         return reverse("dog:like-toggle", args=[self.slug])
     
+    # def get_api_like_url(self):
+    #     return reverse("dog:like-api-toggle", args=[self.slug])
+    
 
 
 class Comment(models.Model):
