@@ -57,6 +57,8 @@
     /* filter: grayscale(100%); Change the color of the map to black and white */
 		}
 
+
+
 </style>
 <link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
 <!---<script type="text/javascript" src="{% static '/js/jquery.js'%}"></script>-->
@@ -74,17 +76,21 @@
  -->
 
   <div class="image">
-    <image class='image' src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/>
+    <image class='image' src="{{ MEDIA_URL }}{{ cottage.image }}" alt='Image of {{ cottage.name }}'/>
     <h1 class="display-3">{{ cottage.name }}</h1>
     <p>This is a very wonderful cottage, especially suitable for dogs that like luxury but also freedom to roam around.</p>
+    {% if user.is_authenticated %}
     <h2><a class="btn btn-primary btn-lg" href="{% url 'dog:sign' cottage.slug %}" role="button">Review cottage &raquo;</a></h2>
+    {% endif %}
   </div>
 
 
 <!-- owner picture -->
   <div id="comments">
   <div class="w3-display-container" id="commentsection">
-  <p id="likes"> </p> <a href='{{ cottage.get_like_url }}'class='like-btn' >Like </a>
+    {% if user.is_authenticated %}
+    <p id="likes"> </p> <a href='{{ cottage.get_like_url }}'class='like-btn' >Like </a>
+    {% endif %}
   {% if comments %}
     {% for c in comments %}
       <div class="comment_header">

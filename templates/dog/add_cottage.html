@@ -12,19 +12,17 @@
 		{% if not_region_name_url %}
 			<div style="color: red;">The specified category doees not exist!</div> 
 		{% else %}
-		<form id="page_form" method="post" action="/dog/region/{{region.slug}}/add_cottage/">
-
-		{% csrf_token %}	
-		{% for hidden in form.hidden_fields %}
-		{{ hidden }}
-		{% endfor %}
-		{% for field in form.visible_fields %}	
-		{{ field.errors }}
-		{{ field.help_text }}
-		{{ field }} 
-		{% endfor %}
-		<input type="submit" name="submit" value="Add Cottage"/>
-</form>
 		
+		<form method="post" class ="form" enctype="multipart/form-data" action="/dog/region/{{region.slug}}/add_cottage/">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Submit" />
+		</form>
 		{% endif %}
+<style>
+	.form {
+		display: flex;
+		flex-direction: column;
+		}
+</style>
 {% endblock %}	
