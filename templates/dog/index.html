@@ -37,10 +37,21 @@ Home/Search
 -->
 <!-- another search bar -->
 <div class="search-box-wrapper">
-  <input type="text" placeholder="Search…" class="search-box-input">
+  <input type="text" id="maxsize" placeholder="Search…" class="search-box-input" >
+  <script src="{% static 'js/findplace.js' %}"></script>
   <button width="500" class="search-box-button">&#128269;</button>
 </div>
 
+
+
+<!-- old search bar
+<div class="search-box-wrapper">
+  <input type="text" id="selector" placeholder="Search…" class="search-box-input" rel="stylesheet" href="{% static "js/findplace.js" %}" >
+  <script> rel="stylesheet" href="{% static "js/findplace.js" %}"</script>
+  <button width="500" class="search-box-button">&#128269;</button>
+</div>
+
+-->
 <!-- Google map -->
 <div>
   <h1> </h1>
