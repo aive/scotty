@@ -34,6 +34,7 @@ class Cottage(models.Model):
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='cottage_likes')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     address = models.CharField(max_length=128, blank=True)
+    description = models.CharField(max_length=128, blank=True)
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True, blank=True)
     
@@ -52,6 +53,9 @@ class Cottage(models.Model):
     
     def get_like_url(self):
         return reverse("dog:like-toggle", args=[self.slug])
+
+    def get_api_like_url(self):
+        return reverse("dog:api_like_cottage", args=[self.slug])
     
 
 

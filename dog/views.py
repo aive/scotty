@@ -13,7 +13,7 @@ from django.contrib.auth import logout
 from datetime import datetime
 from django.template import RequestContext
 from django.views.generic import RedirectView
-
+from django.db.models import Count
 
 def index(request):
 
@@ -108,7 +108,71 @@ def add_region(request):
       else: print(form.errors)
    return render(request, 'dog/add_region.html', {'form':form})
 
+def browse_cottages(request):
+      context_dict = {}
+      try:
+            cottages = Cottage.objects.all()
+            context_dict['cottages'] = cottages
+      except Cottage.DoesNotExist:
+            context_dict['cottages'] = None
+      
+      
+      return render(request, 'dog/browse_cottages.html', context_dict)
 
+
+
+def mostliked(request, ):
+      context_dict = {}
+      try:
+            mlcottages = Cottage.objects.all()
+            mlcottages = Cottage.objects.annotate(like_count=Count('likes')).order_by('-like_count')
+            context_dict['cottages'] = mlcottages
+      except Cottage.DoesNotExist:
+            context_dict['cottages'] = None
+      print(mlcottages)
+      
+      return render(request, 'dog/browse_cottages.html', context_dict)
+      
+
+def mostviewed(request):
+      context_dict = {}
+      try:
+            mvcottages = Cottage.objects.all()
+            mvcottages = Cottage.objects.annotate(view_count=Count('views')).order_by('-view_count')
+            context_dict['cottages'] = mvcottages
+      except Cottage.DoesNotExist:
+            context_dict['cottages'] = None
+            
+      return render(request, 'dog/browse_cottages.html', context_dict)
+
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from rest_framework import authentication, permissions
+
+# class CottageLikeAPIToggle(APIView):
+#     authentication_classes = (authentication.SessionAuthentication,)
+#     permission_classes = (permissions.IsAuthenticated,)
+
+#     def get(self, request, slug=None, format=None):
+#         # slug = self.kwargs.get("slug")
+#         obj = get_object_or_404(Post, slug=slug)
+#         url_ = obj.get_absolute_url()
+#         user = self.request.user
+#         updated = False
+#         liked = False
+#         if user.is_authenticated():
+#             if user in obj.likes.all():
+#                 liked = False
+#                 obj.likes.remove(user)
+#             else:
+#                 liked = True
+#                 obj.likes.add(user)
+#             updated = True
+#         data = {
+#             "updated": updated,
+#             "liked": liked
+#         }
+#         return Response(data)
 
 def add_cottage(request, region_name_slug):
       try:
@@ -122,10 +186,12 @@ def add_cottage(request, region_name_slug):
             if form.is_valid():
                   if region:
                         cottage = form.save(commit=False)
-                        cottage.region = region
+                        cottage.region = Region.objects.get(slug=region_name_slug)
                         cottage.views = 0
-                        cottage.save()
-                        return show_region(request, region_name_slug)
+                        if 'image' in request.FILES:
+                              cottage.image = request.FILES['image']
+                              cottage.save()
+                              return show_region(request, region_name_slug)
                   else:
                         print(form.errors)
 

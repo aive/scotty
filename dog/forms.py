@@ -4,7 +4,7 @@ from dog.models import Cottage
 from dog.models import Region
 from dog.models import UserProfile
 from django.contrib.auth.models import User
-
+from django.utils.safestring import mark_safe
 
 
 
@@ -26,12 +26,11 @@ class RegionForm(forms.ModelForm):
         fields = ('name',)
 
 class CottageForm(forms.ModelForm):
-    title = forms.CharField(max_length=128, help_text="Please enter the name of the cottage.")
-    address = forms.CharField(max_length=200, help_text="Please enter the address of the cottage.")
-    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     class Meta:
         model = Cottage
-        exclude = ('region',)
+        fields = ('name', 'image', 'address')
+        exclude = ('region','user', 'likes', 'views')
 
     def clean(self):
         cleaned_data = self.cleaned_data
