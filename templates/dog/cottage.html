@@ -12,11 +12,42 @@
 
 
 <style>
-.image {
-	width: 100%;
-	height: auto;
-	
-	}
+.container {
+  position: relative;
+}
+
+#clip {
+  position: absolute;
+  clip: rect(0, 100px, 50px, 0);
+  /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+}
+#circle {
+  -webkit-clip-path: circle(75px at 50% 50%);
+  clip-path: circle(75px at 50% 50%)
+}
+  .image {
+     position: relative;
+     margin: auto;
+     width: 100%; /* for IE 6 */
+
+  }
+
+  h2 {
+     position: absolute;
+     top: 50px;
+     left: 0;
+     width: 100%;
+  }
+
+  #owner
+  {
+    position: absolute;
+    top: 190px;
+    padding-left: 75px;
+    font-size:20pt;
+    align: center;
+    color: gray;
+  }
 
 
 #googleMap {
@@ -31,99 +62,61 @@
 <!---<script type="text/javascript" src="{% static '/js/jquery.js'%}"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<!---<script>
-		
 
-		$(document).ready(function(){
-			 function updateText(btn, newCount, verb){
-			 btn.text(newCount + " " + verb)
-		 }
-		 $(".like-btn").click(function(e){
-		   e.preventDefault()
-		   var this_ = $(this)
-		   var likeUrl = this_.attr("data-href")
-		   var likeCount = parseInt(this_.attr("data-likes")) | 0
-		   console.log(likeCount)
-		   var addLike = likeCount + 1
-		   var removeLike = likeCount - 1
-		   if (likeUrl){
-			   $.ajax({
-
-			   url: likeUrl,
-			   method: "GET",
-			   data: {},
-			   success: function(data){
-				 console.log(data)
-				 var newLikes;
-				 if (data.liked){
-					 updateText(this_, addLike, "Unlike")
-				 } else {
-					 updateText(this_, removeLike, "Like")
-					 // remove one like
-				 }
-			   }, error: function(error){
-				 console.log(error)
-				 console.log("error")
-			   }
-			 });
-		   }
-		  
-		 });
-	 })
-	   </script>-->
-	
 	{% if cottage %}
+<!-- not working
+  <div class="container">
+    <img src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}' />
+  </div>
+  <div class="container">
+    <img id="clip" src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}' />
+  </div>
+ -->
 
-		
+  <div class="image">
+    <image class='image' src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/>
+    <h1 class="display-3">{{ cottage.name }}</h1>
+    <p>This is a very wonderful cottage, especially suitable for dogs that like luxury but also freedom to roam around.</p>
+    <h2><a class="btn btn-primary btn-lg" href="{% url 'dog:sign' cottage.slug %}" role="button">Review cottage &raquo;</a></h2>
+  </div>
 
-		
-		<div class="jumbotron">
-			<h1 class="display-3">{{ cottage.name }}</h1>
-			<a href="{% url 'dog:sign' cottage.slug %}">Review Cottage</a>
-		</div>
-		<img class='image' src="{{ MEDIA_URL }}cottages/{{ cottage.name }}.jpg" alt='Image of {{ cottage.name }}'/>
-		<div id="comments">
-		<div class="w3-display-container" id="commentsection">
-		<p id="likes"> </p> <a href='{{ cottage.get_like_url }}'class='like-btn' >Like </a>
-		{% if comments %}
- 
-			           
-			{% for c in comments %}
-      	      
-				
-				<div class="comment_header">
-              
-				<h1>{{c.name}} {{ c.date_added }}</h1>
-            
-				</div>
-            
-				<div class="comment">
-              
-				<p>{{c.comment}}.</p>
-            
-				</div>
-				         
-			{% endfor %}
-            
-		{% endif %}
-            
-		</div>   
-		</div
+
+<!-- owner picture -->
+  <div id="comments">
+  <div class="w3-display-container" id="commentsection">
+  <p id="likes"> </p> <a href='{{ cottage.get_like_url }}'class='like-btn' >Like </a>
+  {% if comments %}
+    {% for c in comments %}
+      <div class="comment_header">
+      <h1>{{c.name}} {{ c.date_added }}</h1>
+      </div>
+      <div class="comment">
+      <p>{{c.comment}}.</p>
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+  <!-- owner picture -->
+
+  <!-- owner picture -->
+  <div class="container">
+  <img id="circle" src="{{ MEDIA_URL }}owner/owner1_thumb.jpg" alt='Image of owner'/>
+  <p id="owner">Brad</p>
+  <!--<h1 class="display-3">{{ owner.name }}</h1> -->
+  </div>
+  <!-- end owner picture -->
+
+
+
 		<!-- Add Google Maps -->
 		<div id="googleMap"></div>
-		
-		
-		
-		
-		
 
-		 
-		</script>
-		<script>
-		
-		
+    <script>
+
+
 		$(document).ready(function(){
-			var likes= parseInt({{ cottage.likes.count }}) 
+			var likes= parseInt({{ cottage.likes.count }})
 			if (likes==1){
 				$('#likes').html();
 				$('#likes').text("{{ cottage.likes.count }} Like");
@@ -153,15 +146,15 @@
   			if (status == google.maps.GeocoderStatus.OK) {
     			var latitude = results[0].geometry.location.lat();
     			var longitude = results[0].geometry.location.lng();
-			
 
- 		 } 
+
+ 		 }
 		myMap(latitude, longitude);
 		});
 		</script>
-		
+
 		{% endif %}
-	
+
 
 
 
