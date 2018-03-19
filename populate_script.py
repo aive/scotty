@@ -14,7 +14,7 @@ def populate():
     highlands_cottages = [
     {"name": "The Burrow","description": "Cozy place in Aberdeenshire.", "area":"Aberdeenshire", "image": "cottages/The Burrow.jpg", "address":"AB51 4GY","views": 20},
     {"name": "Windyridge", "description": "Nice place in Applecross.", "area": "Applecross", "image": "cottages/Windyridge.jpg", "address":"IV54 8LR","views": 21},
-    {"name": "Garden Cottage", "description": "Big garden full of fun!", " "area": "Stirling", "image": "cottages/Garden Cottage.jpg", "address":"FK15 0HG","views": 10},
+    {"name": "Garden Cottage", "description": "Big garden full of fun!", "area": "Stirling", "image": "cottages/Garden Cottage.jpg", "address":"FK15 0HG","views": 10},
     {"name": "Four Winds", "description": "Be free as the wind!", "area": "Aviemore", "image": "cottages/Four Winds.jpg","address":"PH22 1RB","views": 220},
     {"name": "Wild Bank", "description": "Go wild, river and rafting!",  "area": "BettyHill", "image": "cottages/Wild Bank.jpg", "address":"KW14 8TY","views": 10},
     {"name": "Mile End", "description": "The beginning of something new!", "area": "Braemar", "image": "cottages/Mile End.jpg", "address":"AB35 5XU","views": 520},
@@ -59,41 +59,19 @@ def populate():
     for reg, reg_data in regs.items():
         r = add_reg(reg, reg_data["views"], reg_data["likes"])
         for c in reg_data["cottages"]:
-            add_cottage(r, c["name"], c["address"], c["views"])
+            add_cottage(r, c["name"], c["area"],c["address"],c["views"],c["description"],c["image"])
 
+    areas = [islands_cottages, lowlands_cottages, highlands_cottages]
 
-    for cottage in islands_cottages:
-        cottage_object = Cottage.objects.get_or_create(name=cottage['name'])[0]
-        cottage_object.image = cottage['image']
-        cottage_object.save()
+    for area in areas:
+        for cottage in area:
+            cottage_object = Cottage.objects.get_or_create(name=cottage['name'])[0]
+            cottage_object.image = cottage['image']
+            cottage_object.save()
 
-        print(cottage_object)
-
-        print(cottage)
-
-    print('=====')
-
-    for cottage in lowlands_cottages:
-        cottage_object = Cottage.objects.get_or_create(name=cottage['name'])[0]
-        cottage_object.image = cottage['image']
-        cottage_object.save()
-
-        print(cottage_object)
-
-        print(cottage)
-
-    print('=====')
-
-    for cottage in highlands_cottages:
-        cottage_object = Cottage.objects.get_or_create(name=cottage['name'])[0]
-        cottage_object.image = cottage['image']
-        cottage_object.save()
-
-        print(cottage_object)
-
-        print(cottage)
-
-    print('=====')
+            print(cottage_object)
+        
+            print(cottage)
 
 
 
@@ -104,9 +82,12 @@ def populate():
 
 
 
-def add_cottage(reg, name, address, views=0):
+def add_cottage(reg, name, address, description, area, image, views=0):
         c = Cottage.objects.get_or_create(region=reg, name=name)[0]
-        c.address=address
+        c.address = address
+        c.area=area
+        c.description=description
+        c.image = image
         c.save()
         return c
 
