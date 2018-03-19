@@ -7,13 +7,13 @@
   <!-- meta-->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="{% static 'images/scotty.ico' %}">
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 <!-- scripts for easy autocomplete -->
 
 
@@ -32,7 +32,7 @@
   <!-- Bootstrap CSS -->
   <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href= "http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+  <!-- <link href= "http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="static/css/main.css" type="text/css" media="screen, projection" />
   <link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
   <!-- JQuery -->
@@ -46,7 +46,7 @@
   </title>
 
 </head>
-<body class='jumbotron'>
+<body>
   <!--- navbar -->
   <div class="container menu">
 
@@ -119,21 +119,32 @@
 
 
   <!--- main content area -->
-  <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
+  <!-- <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main"> -->
+<div class="row">
+      <div class="container">
     <h1>&nbsp;</h1>
     {% block body_block %}
     {% endblock %}
   </div>
+</div>
+
 
   <!--- footer area
   <div class="container footer">
 
 </div> -->
-<div class="container">
-  {% block footer %}
-  <center><p style='color: white; size:20px;'><em>Scotty Ltd.<em></p></center>
-    {% endblock %}
-  </div>
+
+
+  <footer class="text-muted">
+    <div class="container">
+      {% block footer %}
+      <p class="float-right">
+        <a href="#">Back to top</a>
+      </p>
+      <p>Scotty is &copy; of "It takes lots of coffee to Django"</p>
+      {% endblock %}
+    </div>
+  </footer>
 
   <!-- Bootstrap core JavaScript
   ================================================== -->
