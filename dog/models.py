@@ -28,16 +28,16 @@ class Region(models.Model):
 
 
 class Cottage(models.Model):
-    region = models.ForeignKey(Region)
     name = models.CharField(max_length=128)
+    description = models.CharField(max_length=128, blank=True)
     image = models.ImageField(upload_to='cottages', blank=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='cottage_likes')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
+    region = models.ForeignKey(Region)
     address = models.CharField(max_length=128, blank=True)
-    description = models.CharField(max_length=128, blank=True)
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True, blank=True)
-    
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Cottage, self).save(*args, **kwargs)
@@ -47,16 +47,16 @@ class Cottage(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
         return reverse("dog:show_cottage", args=[self.slug])
-    
+
     def get_like_url(self):
         return reverse("dog:like-toggle", args=[self.slug])
 
     def get_api_like_url(self):
         return reverse("dog:api_like_cottage", args=[self.slug])
-    
+
 
 
 class Comment(models.Model):
@@ -67,8 +67,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
-      
-       
+
+
     '''@property
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):

@@ -102,6 +102,7 @@ div.searchcontent {
 .search-box-wrapper {
 	display: inline-flex;
 	font-size:20px;
+  maxsize
 }
 
 .search-box-input {
@@ -127,6 +128,7 @@ div.searchcontent {
 	font-weight: bold;
 	outline: 0;
 	cursor: pointer;
+  
 }
 
 .search-box-button: hover,

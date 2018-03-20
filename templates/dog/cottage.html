@@ -78,7 +78,8 @@
   <div class="image">
     <image class='image' src="{{ MEDIA_URL }}{{ cottage.image }}" alt='Image of {{ cottage.name }}'/>
     <h1 class="display-3">{{ cottage.name }}</h1>
-    <p>This is a very wonderful cottage, especially suitable for dogs that like luxury but also freedom to roam around.</p>
+    <p>{{ cottage.description }}, {{ cottage.address }}</p>
+      </p>
     {% if user.is_authenticated %}
     <h2><a class="btn btn-primary btn-lg" href="{% url 'dog:sign' cottage.slug %}" role="button">Review cottage &raquo;</a></h2>
     {% endif %}

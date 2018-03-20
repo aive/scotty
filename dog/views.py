@@ -30,20 +30,38 @@ def index(request):
    response = render(request, 'dog/index.html', context=context_dict)
    return response
 
-def searchresults(request):
+def get_cottage_list(max_results=0, starts_with=''):
+    cottage_list = []
+    if starts_with:
+        cottage_list = Cottage.objects.filter(name__istartswith=starts_with)
+    if max_results > 0:
+        if len(cottage_list) > max_results:
+            cottage_list = cottage_list[:max_results]
+    return cottage_list
 
-   request.session.set_test_cookie()
-   region_list = Region.objects.order_by('-likes')[:5]
-   cottage_list = Cottage.objects.order_by('-views')[:5]
-   context_dict = {'cottages':cottage_list, 'regions':region_list}
+def suggest_cottage(request):
+    cottage_list = []
+    starts_with = ''
+    if request.method == 'GET':
+        starts_with = request.GET['suggestion']
+    cottage_list = get_cottage_list(8, starts_with)
 
-   visitor_cookie_handler(request)
-   context_dict['visits'] = request.session['visits']
+    return render(request, 'dog/searchresults.html', {'cottages': cottage_list })
 
-   print(request.session['visits'])
-
-   response = render(request, 'dog/searchresults.html', context=context_dict)
-   return response
+# def searchresults(request):
+#
+#    request.session.set_test_cookie()
+#    region_list = Region.objects.order_by('-likes')[:5]
+#    cottage_list = Cottage.objects.order_by('-views')[:5]
+#    context_dict = {'cottages':cottage_list, 'regions':region_list}
+#
+#    visitor_cookie_handler(request)
+#    context_dict['visits'] = request.session['visits']
+#
+#    print(request.session['visits'])
+#
+#    response = render(request, 'dog/searchresults.html', context=context_dict)
+#    return response
 
 def regions(request):
    context_dict = {}
@@ -115,8 +133,8 @@ def browse_cottages(request):
             context_dict['cottages'] = cottages
       except Cottage.DoesNotExist:
             context_dict['cottages'] = None
-      
-      
+
+
       return render(request, 'dog/browse_cottages.html', context_dict)
 
 
@@ -130,9 +148,9 @@ def mostliked(request, ):
       except Cottage.DoesNotExist:
             context_dict['cottages'] = None
       print(mlcottages)
-      
+
       return render(request, 'dog/browse_cottages.html', context_dict)
-      
+
 
 def mostviewed(request):
       context_dict = {}
@@ -142,7 +160,7 @@ def mostviewed(request):
             context_dict['cottages'] = mvcottages
       except Cottage.DoesNotExist:
             context_dict['cottages'] = None
-            
+
       return render(request, 'dog/browse_cottages.html', context_dict)
 
 # from rest_framework.views import APIView

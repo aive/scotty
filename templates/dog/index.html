@@ -7,10 +7,11 @@ Home/Search
 {% block body_block %}
 
 <div class="w3-display-container">
-  <img src="{% static "images/scotty-22.png" %}" width="200" alt="scotty" />
-  <h1> </h1>
-  <h1 id="slogan"> Find Dogfriendly cottages. </h1>
-  <p> </p>
+  <h3>&nbsp;</h3>
+  <img src="{% static "images/scotty-22.png" %}" width="220" alt="scotty" />
+  <h2>&nbsp;</h2>
+  <h1 id="slogan"> Find Dogfriendly cottages in Scotland. </h1>
+  <h2>&nbsp;</h2>
 </div>
 
 
@@ -35,34 +36,37 @@ Home/Search
 </form>
 </div>
 -->
-<!-- another search bar -->
+<!-- search bar
 <div class="search-box-wrapper">
-  <input type="text" id="maxsize" placeholder="Search…" class="search-box-input" >
+  <input type="text" id="maxsize" placeholder="Search…" class="search-box-input"  >
   <script src="{% static 'js/findplace.js' %}"></script>
   <button width="500" class="search-box-button">&#128269;</button>
 </div>
-
-
-
-<!-- old search bar
-<div class="search-box-wrapper">
-  <input type="text" id="selector" placeholder="Search…" class="search-box-input" rel="stylesheet" href="{% static "js/findplace.js" %}" >
-  <script> rel="stylesheet" href="{% static "js/findplace.js" %}"</script>
-  <button width="500" class="search-box-button">&#128269;</button>
+-->
+<!-- another Rango book search bar-->
+<div>
+<ul>
+  <h3>Type to find a cottage</h3>
+  <form>
+  <p><input type="text" name="suggestion" value="" id="suggestion" /></p>
+  </form>
+</ul>
+<hr>
+<div id="cottages"></div>
 </div>
 
--->
 <!-- Google map -->
 <div>
-  <h1> </h1>
-  <h1> </h1>
+  <h1>&nbsp;</h1>
+  <h1>&nbsp;</h1>
 
-  <h1> Map</h1>
+  <h2>Map of Scotland</h2>
+
   <div id="map"></div>
-  <script async defer
+  <!--<script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz9XGMk2hpR3-3cO8bBYNRAGwr87d9GWo&callback=initMap">
   /* maps css */
-  </script>
+</script> -->
 </div>
 
 
