@@ -20,7 +20,7 @@
 <!-- CSS file -->
 <link rel="stylesheet" href="{% static 'css/easy-autocomplete.min.css' %}">
 
-<link rel="stylesheet" href="{% static "css/album.css" %}" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="{% static 'css/album.css' %}" type="text/css" media="screen, projection" />
 <link href="album.css" rel="stylesheet">
 
 
@@ -86,49 +86,34 @@
           </li>
           {% endif %}
         </ul>
-
-        <!--- login dropdown -->
-        <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-          <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
-          <li class="dropdown order-1">
-            <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
-            <ul class="dropdown-menu dropdown-menu-right mt-1">
-                <li class="p-3">
-                  <form class="form" role="form">
-                    <div class="form-group">
-                      <input id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
-                    </div>
-                    <div class="form-group">
-                      <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
-                    </div>
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-primary btn-block">Login</button>
-                    </div>
-                    <div class="form-group text-xs-center">
-                      <small><a href="#">Forgot password?</a></small>
-                    </div>
-                  </form>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        
 
       </div>
 
     </nav>
   </div>
+<style>
+#bodyblock  {
+    background-image: url("{% static 'images/background.jpg' %}");
+    width: 100%;
+    height:100%;
 
+  }
 
+</style>
+  
 
 
   <!--- main content area -->
-  <!-- <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main"> -->
+  
 <div class="row">
-      <div class="container">
+    <div id="bodyblock">
+      <div class="container ">
     <h1>&nbsp;</h1>
     {% block body_block %}
     {% endblock %}
   </div>
+</div>
 </div>
 
 
