@@ -2,8 +2,23 @@
 
 h1 {
   font-size: 50px;
-  color: #3b3a36;
+  color: #3ab7a2;
 }
+
+/* footer css */
+#footertext{
+
+  font-size: 9pt;
+  color: white;
+  display: center;
+}
+
+#backtotop{
+  color: #3ab7a2;
+}
+
+
+
 .container{
   border-radius: 15px;
 
@@ -11,6 +26,7 @@ h1 {
 
 .background {
   background-color: #e9ece5;
+  background-image:
 }
 
 .navbar {
@@ -61,9 +77,10 @@ div.searchcontent {
 }
 #slogan{
   font-size: 40pt;
+  color: white;
   display: center;
-
-
+  padding: 10px;
+  background-color: #e05038;
 }
 
 #region{
@@ -128,7 +145,7 @@ div.searchcontent {
 	font-weight: bold;
 	outline: 0;
 	cursor: pointer;
-  
+
 }
 
 .search-box-button: hover,

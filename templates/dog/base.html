@@ -101,11 +101,22 @@
 <div id="bodyblock">
     <div class="row">
         <div class="container ">
-        <h1>&nbsp;</h1>
+        <h1 >&nbsp;</h1>
         {% block body_block %}
         {% endblock %}
       </div>
     </div>
+
+<style>
+ #bodyblock  {
+    background-image: url("{% static 'images/background.png' %}");
+    width: 100%;
+    height:100%;
+
+   }
+
+ </style>
+
 
   <!--- footer area -->
 
