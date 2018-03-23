@@ -1,230 +1,63 @@
-﻿
-
-<!DOCTYPE html>
+﻿{% extends 'dog/base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-  <!-- meta-->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="{% static 'images/scotty.ico' %}">
 
-  <meta charset="utf-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
-<!-- scripts for easy autocomplete -->
-
-
-<!-- CSS file -->
-<link rel="stylesheet" href="{% static 'css/easy-autocomplete.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/album.css' %}" type="text/css" media="screen, projection" />
-<link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" media="screen, projection" />
-<!-- Additional CSS Themes file - not required-->
-<link rel="stylesheet" href= "{% static 'css/easy-autocomplete.themes.min.css' %}">
-<!-- scripts for easy autocomplete end -->
-
-  <!-- Bootstrap CSS -->
-  <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <!-- <link href= "http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"> -->
-
-  <link rel="stylesheet" href="{% static 'css/main.css'%}" type="text/css" media="screen, projection" />
-
-  <link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
-  <!-- JQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  <!-- title -->
-  <title>
-    SCOTTY
-    {% block title_block %}
-    {% endblock %}
-  </title>
-
-
-<head>
-  <!--- navbar -->
-  <div class="container menu">
-
-    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <a class="navbar-brand" href="/">
-        <div>
-          <img src="{% static "images/scotty-21.png" %}" width="70" alt="scotty logo" />
-        </div>
-      </a>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'dog:regions' %}">Regions</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'dog:browse_cottages' %}">Browse all Cottages</a>
-          </li>
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'dog:add_region' %}">Add Region</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'auth_logout' %}">Logout </a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'registration_register' %}">Register </a>
-          </li>
-          {% endif %}
-        </ul>
-
-
-      </div>
-
-    </nav>
-  </div>
-
-</head>
-<style>
-@import url(https://fonts.googleapis.com/css?family=Exo:300);
-	body, h1, h2, h3 {
-		font-family: 'Exo', sans-serif;
-		font-weight: 700;
-		}
-.mySlides {
-		display: none;
-		left: 0px;
-		}
-
-#suggestion{
-	width: 100%:
-}
-		
-</style>
-
-
-
-<body>
-		
-<!-- Automatic Slideshow Images -->	  
-		  <div class="mySlides w3-display-container w3-center">
-		  	<img src="{% static 'images/bg_5.jpg' %}" style="width:100%, z-index:-1">
-		    	<div class="w3-display-middle w3-container w3-text-white w3-padding-32 w3-hide-small">
- 				<h3>&nbsp;</h3>
-  				<img src="{% static "images/scotty_white.png" %}" style="width:50%" alt="scotty" />
-  				<p><input type="text" name="suggestion" placeholder="Find Dogfriendly Scotty-cottages in Scotland..." style="width:50%"id="suggestion" /></p>
-		  	</div>
- 		</div>
- 	
-		  
-		  <div class="mySlides w3-display-container w3-center">
-		  	<img src="{% static 'images/bg_4.jpg' %}" style="width:100%, z-index:-1">
-		    	<div class="w3-display-middle w3-container w3-text-white w3-padding-32 w3-hide-small">
- 				<h3>&nbsp;</h3>
-  				<img src="{% static "images/scotty_white.png" %}" style="width:50%" alt="scotty" />
-  				<p><input type="text" name="suggestion" placeholder="Find Dogfriendly Scotty-cottages in Scotland..." style="width:50%" id="suggestion" /></p>
-		  	</div>
- 		</div>
-
-
-		  
-		<div class="mySlides w3-display-container w3-center">
-		  	<img src="{% static 'images/bg_5.jpg' %}" style="width:100%, z-index:-1">
-		    	<div class="w3-display-middle w3-container w3-text-white w3-padding-32 w3-hide-small">
- 				<h3>&nbsp;</h3>
-  				<img src="{% static "images/scotty_white.png" %}" style="width:50%" alt="scotty" />	
-				<p><input type="text" name="suggestion" placeholder="Find Dogfriendly Scotty-cottages in Scotland..." style="width:50%" id="suggestion" /></p>
-		  	</div>
- 		</div>
-
-
- </div>
-
-<div>
-		<ul>
-  		<form>
- 			<input type="text" name="suggestion" placeholder="Search for your SCOTTY cottage" value="" id="suggestion" />
-  			</form
-	</ul>
-	<div id="cottages"></div>
-	</div>
-</div>
-
+{% block title_block %}
+Home/Search
+{% endblock %}
+{% block body_block %}
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
-
-
-
-<!--ajaxing-->
-  <!-- <script src="{% static "js/jquery.min.js" %}"></script> -->
-  <!-- <script src="{% static "js/scotty-ajax.js" %}"></script> -->
-
-  <!--ajax
-  <script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
-</script>
-
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script
-src=
-"http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js">
-</script>
-
-<!-- jQuery CDN for easyAutocomplete -->
-<!-- <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> -->
-  <!-- JS file -->
-<script src="{% static 'js/jquery.easy-autocomplete.min.js' %}"></script>
-<script src="{% static 'js/scotty-ajax.js' %}"></script>
-<!-- end jQuery CDN for easyAutocomplete -->
-
-<!-- jQuery first, then Tether, then Bootstrap JS. -->
-<!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
-
-
-
-	
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Exo:300);
+    body, h1, h2, h3 {
+      font-family: 'Exo', sans-serif;
+      font-weight: 700;
+      }
+  .mySlides {
+      left: 0px;
+      }
+  
+  .suggestion{
+        width: 95%;
+        height: 50px;
+        border-radius: 10px;
+        text-align: center;
         
- 
+      }
+  .block{
+      margin-top:  5%;
+  }
+  #cottages{
+    color: brown;
+  }
+      
+  </style>
+  
+  
+  
+
+    <div class="mySlides w3-display-container w3-center">
+        <div class="block w3-display-topmiddle w3-text-white w3-padding-32 w3-hide-small">
+          <img src="{% static "images/scotty_brown.png" %}" style="width:50%" alt="scotty" />
+          <br />
+          <div>
+            <ul>
+                <form>
+                  <h2><input class="suggestion"  type="text" placeholder="Search for SCOTTY Cottages..." name="suggestion" value="" id="suggestion" /></h2>
+                </form>
+            </ul>
+    
+          <div id="cottages"></div>
+          </div>
+      </div>
+   </div>
 
 
-<script type="text/javascript">
-
-var myIndex = 0;
-carousel();
-function carousel() {
-	var i;
-	var x = document.getElementsByClassName("mySlides");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.display = "none";  
-			    }
-	myIndex++;
-	if (myIndex > x.length) {myIndex = 1}    
-	x[myIndex-1].style.display = "block";  
-	setTimeout(carousel, 4000);    
-			}
-		
-
-
-</script>
 
 
 
-</body>
-</html>
-
-
+{% endblock %}
