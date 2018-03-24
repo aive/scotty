@@ -25,12 +25,25 @@
   -webkit-clip-path: circle(75px at 50% 50%);
   clip-path: circle(75px at 50% 50%)
 }
-  .image {
-     position: relative;
-     margin: auto;
-     width: 100%; /* for IE 6 */
 
-  }
+#rect {
+  -webkit-clip-path: rect(75px at 50% 50%);
+  clip-path: rect(75px at 50% 50%)
+}
+
+  .image {
+    position: absolute;
+    clip: rect(0px,1100px,400px,0px);
+    clip-path: rect(40px at 50% 50%)
+}
+
+#dogpic {
+  position: relative;
+  top: 400px;
+  left: 0;
+  width: 100%;
+
+}
 
   h2 {
      position: absolute;
@@ -38,11 +51,16 @@
      left: 0;
      width: 100%;
   }
-
+  h1 {
+     position: relative;
+     top: 00px;
+     left: 0;
+     width: 100%;
+  }
   #owner
   {
-    position: absolute;
-    top: 190px;
+    position: relative;
+    top: 400px;
     padding-left: 75px;
     font-size:20pt;
     align: center;
@@ -51,11 +69,14 @@
 
 
 #googleMap {
+  position: relative;
+  top: 800px;
     width: 100%; /* Span the entire width of the screen */
     height: 400px; /* Set the height to 400 pixels */
     /* -webkit-filter: grayscale(100%);*/
     /* filter: grayscale(100%); Change the color of the map to black and white */
 		}
+
 
 
 
@@ -79,14 +100,19 @@
     <image class='image' src="{{ MEDIA_URL }}{{ cottage.image }}" alt='Image of {{ cottage.name }}'/>
     <h1 class="display-3">{{ cottage.name }}</h1>
     <p>{{ cottage.description }}, {{ cottage.address }}</p>
-      </p>
+
     {% if user.is_authenticated %}
     <h2><a class="btn btn-primary btn-lg" href="{% url 'dog:sign' cottage.slug %}" role="button">Review cottage &raquo;</a></h2>
     {% endif %}
   </div>
 
+  <!-- dog picture -->
+  <div id="dogpic">
+  <img src="{{ MEDIA_URL }}sketches/sketch-06.png" width="300" alt='Image of scotty'/>
+  </div>
+  <!-- end dog picture -->
 
-<!-- owner picture -->
+
   <div id="comments">
   <div class="w3-display-container" id="commentsection">
     {% if user.is_authenticated %}
@@ -104,7 +130,8 @@
   {% endif %}
   </div>
 </div>
-  <!-- owner picture -->
+
+
 
   <!-- owner picture -->
   <div class="container">
@@ -114,11 +141,16 @@
   </div>
   <!-- end owner picture -->
 
-
+  <!-- mymap picture -->
+  <div id="dogpic">
+<h1>Neighbourhood fun </h1>
+  <img src="{{ MEDIA_URL }}sketches/sketch-05.png" width="1000" alt='Image of scotty'/>
+  </div>
+  <!-- end mymap picture -->
 
 		<!-- Add Google Maps -->
 		<div id="googleMap"></div>
-
+<h1>Google map </h1>
     <script>
 
 

@@ -6,13 +6,60 @@ Home/Search
 {% endblock %}
 {% block body_block %}
 
+
+<style>
+h1,h2 {text-align:center;}
+#bone {
+  text-align:center;
+  color: red;
+  width: 300%;
+  height: 100px;
+
+}
+h3 {text-align:center; color:gray;}
+p {text-align:center;}
+#cottages {text-align:center; background-color: #c0dfd9;}
+
+/* Container holding the image and the text */
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+
+/* Centered text */
+.centered {
+    font-size: 40px;
+    color: white;
+    position: absolute;
+    top: 83%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+</style>
+
 <div class="w3-display-container">
-  <h3>&nbsp;</h3>
-  <img src="{% static "images/scotty-22.png" %}" width="220" alt="scotty" />
-  <h2>&nbsp;</h2>
-  <h1 id="slogan"> Find Dogfriendly cottages in Scotland. </h1>
-  <h2>&nbsp;</h2>
+
+  <img src="{% static "images/scotty-22.png" %}" width="250" alt="scotty" />
+  <img src="{% static "images/sketch-01.png" %}" width="550" alt="scotty" />
+  <h1 >Type to find cottages. </h1>
+
+
+<div >
+  <img src="{% static "images/sketch-14.png" %}" width="800" alt="scotty" />
+<form>
+<h2 class="centered" ><input  type="text" name="suggestion" value="" id="suggestion" /></h2>
+</form>
+<hr>
+
 </div>
+</div>
+<div id="cottages"></div>
+
+
+
 
 
 <!--- search bar
@@ -44,16 +91,11 @@ Home/Search
 </div>
 -->
 <!-- another Rango book search bar-->
-<div>
-<ul>
-  <h1>Type to find a cottage</h1>
-  <form>
-  <h2><input    type="text" name="suggestion" value="" id="suggestion" /></h2>
-  </form>
-</ul>
-<hr>
-<div id="cottages"></div>
-</div>
+
+
+<!--h2>Type to fetch.</h2-->
+
+
 
 <!-- Google map
 <div>
