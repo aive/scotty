@@ -14,7 +14,7 @@ from datetime import datetime
 from django.template import RequestContext
 from django.views.generic import RedirectView
 from django.db.models import Count
-
+#Main screen View
 def index(request):
 
    request.session.set_test_cookie()
@@ -30,6 +30,7 @@ def index(request):
    response = render(request, 'dog/index.html', context=context_dict)
    return response
 
+#View requesting the list of the cottages
 def get_cottage_list(max_results=0, starts_with=''):
     cottage_list = []
     if starts_with:
@@ -39,6 +40,7 @@ def get_cottage_list(max_results=0, starts_with=''):
             cottage_list = cottage_list[:max_results]
     return cottage_list
 
+#View displaying the list of suggested cottages
 def suggest_cottage(request):
     cottage_list = []
     starts_with = ''
@@ -48,27 +50,14 @@ def suggest_cottage(request):
 
     return render(request, 'dog/searchresults.html', {'cottages': cottage_list })
 
-# def searchresults(request):
-#
-#    request.session.set_test_cookie()
-#    region_list = Region.objects.order_by('-likes')[:5]
-#    cottage_list = Cottage.objects.order_by('-views')[:5]
-#    context_dict = {'cottages':cottage_list, 'regions':region_list}
-#
-#    visitor_cookie_handler(request)
-#    context_dict['visits'] = request.session['visits']
-#
-#    print(request.session['visits'])
-#
-#    response = render(request, 'dog/searchresults.html', context=context_dict)
-#    return response
-
+#View displaying List of available regions
 def regions(request):
    context_dict = {}
    visitor_cookie_handler(request)
    context_dict['visits'] = request.session['visits']
    return render(request, 'dog/regions.html', context=context_dict)
 
+#View displaying the particular selected region
 def show_region(request, region_name_slug):
    context_dict = {}
    try:
@@ -82,6 +71,7 @@ def show_region(request, region_name_slug):
 
    return render(request, 'dog/region.html', context_dict)
 
+#View displaying the particular selected cottage
 def show_cottage(request, cottage_name_slug):
    context_dict = {}
    try:
@@ -95,6 +85,7 @@ def show_cottage(request, cottage_name_slug):
 
    return render(request, 'dog/cottage.html', context_dict)
 
+#View handling the like toggle button
 class CottageLikeToggle(RedirectView):
     def get_redirect_url(self, cottage_name_slug):
         print(self)
@@ -110,7 +101,7 @@ class CottageLikeToggle(RedirectView):
                 obj.likes.add(user)
         return url_
 
-
+#View using RegionForm handling new region requests
 def add_region(request):
    form = RegionForm()
 
@@ -126,6 +117,7 @@ def add_region(request):
       else: print(form.errors)
    return render(request, 'dog/add_region.html', {'form':form})
 
+#View displaying all of the cottage from  the database
 def browse_cottages(request):
       context_dict = {}
       try:
@@ -138,7 +130,7 @@ def browse_cottages(request):
       return render(request, 'dog/browse_cottages.html', context_dict)
 
 
-
+#-Sorting all the cottages based on the number of likes
 def mostliked(request, ):
       context_dict = {}
       try:
@@ -151,7 +143,7 @@ def mostliked(request, ):
 
       return render(request, 'dog/browse_cottages.html', context_dict)
 
-
+#-Sorting all the cottages based on the number of views
 def mostviewed(request):
       context_dict = {}
       try:
@@ -163,35 +155,8 @@ def mostviewed(request):
 
       return render(request, 'dog/browse_cottages.html', context_dict)
 
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from rest_framework import authentication, permissions
 
-# class CottageLikeAPIToggle(APIView):
-#     authentication_classes = (authentication.SessionAuthentication,)
-#     permission_classes = (permissions.IsAuthenticated,)
-
-#     def get(self, request, slug=None, format=None):
-#         # slug = self.kwargs.get("slug")
-#         obj = get_object_or_404(Post, slug=slug)
-#         url_ = obj.get_absolute_url()
-#         user = self.request.user
-#         updated = False
-#         liked = False
-#         if user.is_authenticated():
-#             if user in obj.likes.all():
-#                 liked = False
-#                 obj.likes.remove(user)
-#             else:
-#                 liked = True
-#                 obj.likes.add(user)
-#             updated = True
-#         data = {
-#             "updated": updated,
-#             "liked": liked
-#         }
-#         return Response(data)
-
+#View using CottageForm handling new cottage requests
 def add_cottage(request, region_name_slug):
       try:
             region = Region.objects.get(slug=region_name_slug)
@@ -217,7 +182,7 @@ def add_cottage(request, region_name_slug):
       return render(request, 'dog/add_cottage.html', context_dict)
 
 
-
+#Read Reviews view containing comments sorted by the date-added
 def review(request, cottage_name_slug):
       context_dict = {}
       try:
@@ -229,7 +194,7 @@ def review(request, cottage_name_slug):
       context = {'comments' : comments, 'cottage':cottage}
       return render (request, 'dog/review.html', context)
 
-
+#Create Comment view containing a reference to Comment form
 def sign(request, cottage_name_slug):
       try:
             cottage = Cottage.objects.get(slug=cottage_name_slug)
@@ -259,33 +224,8 @@ def restricted(request):
    return render(request, 'dog/restricted.html', {})
 
 
-#@login_required
-#def user_logout(request):
-#   logout(request)
-#   return HttpResponseRedirect(reverse('index'))
-
-def get_server_side_cookie(request, cookie, default_val=None):
-      val = request.session.get(cookie)
-      if not val:
-         val = default_val
-      return val
-
 class MyRegistrationView(RegistrationView):
    def get_success_url(self, user):
       return '/dog/'
 
 
-def visitor_cookie_handler(request):
-      visits = int(request.COOKIES.get('visits', '1'))
-      last_visit_cookie = request.COOKIES.get('last_visit', str(datetime.now()))
-      last_visit_time = datetime.strptime(last_visit_cookie[:-7],
-      '%Y-%m-%d %H:%M:%S')
-
-      if (datetime.now() - last_visit_time).days > 0:
-         visits = visits + 1
-         request.session['last_visit'] = str(datetime.now())
-      else:
-
-         request.session['last_visit'] = last_visit_cookie
-
-      request.session ['visits'] = visits

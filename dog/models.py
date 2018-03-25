@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.core.urlresolvers import reverse
 import os
-
+#Region model
 class Region(models.Model):
     name = models.CharField(max_length=128, unique=True)
     views = models.IntegerField(default=0)
@@ -26,7 +26,7 @@ class Region(models.Model):
     def __str__(self):
         return self.name
 
-
+#Cottage Model
 class Cottage(models.Model):
     name = models.CharField(max_length=128)
     description = models.CharField(max_length=128, blank=True)
@@ -47,18 +47,15 @@ class Cottage(models.Model):
 
     def __str__(self):
         return self.name
-
+    #urls Helper Classses to handkle the like toggle button
     def get_absolute_url(self):
         return reverse("dog:show_cottage", args=[self.slug])
-
-    def get_like_url(self):
-        return reverse("dog:like-toggle", args=[self.slug])
 
     def get_api_like_url(self):
         return reverse("dog:api_like_cottage", args=[self.slug])
 
 
-
+#Comment Model
 class Comment(models.Model):
     name = models.CharField(max_length=20, blank=True)
     comment = models.TextField(blank=True)
@@ -68,12 +65,7 @@ class Comment(models.Model):
     def __str__(self):
         return self.name
 
-
-    '''@property
-    def image_url(self):
-        if self.image and hasattr(self.image, 'url'):
-            return self.image.url
-'''
+#UserProfile Model
 
 
 class UserProfile(models.Model):
