@@ -23,9 +23,9 @@ def index(request):
    context_dict = {'cottages':cottage_list, 'regions':region_list}
 
    #visitor_cookie_handler(request)
-   context_dict['visits'] = request.session['visits']
+   #context_dict['visits'] = request.session['visits']
 
-   print(request.session['visits'])
+   #print(request.session['visits'])
 
    response = render(request, 'dog/index.html', context=context_dict)
    return response
