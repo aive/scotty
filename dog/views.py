@@ -22,7 +22,7 @@ def index(request):
    cottage_list = Cottage.objects.order_by('-views')[:5]
    context_dict = {'cottages':cottage_list, 'regions':region_list}
 
-   visitor_cookie_handler(request)
+   #visitor_cookie_handler(request)
    context_dict['visits'] = request.session['visits']
 
    print(request.session['visits'])
@@ -53,7 +53,7 @@ def suggest_cottage(request):
 #View displaying List of available regions
 def regions(request):
    context_dict = {}
-   visitor_cookie_handler(request)
+   #visitor_cookie_handler(request)
    context_dict['visits'] = request.session['visits']
    return render(request, 'dog/regions.html', context=context_dict)
 
@@ -227,5 +227,3 @@ def restricted(request):
 class MyRegistrationView(RegistrationView):
    def get_success_url(self, user):
       return '/dog/'
-
-
