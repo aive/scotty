@@ -1,20 +1,45 @@
 /* main css */
-
+/*
 h1,h2,h3,h4,p {
 
     font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+*/
 
 
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+}
+
+h1, h2, h3, h4, blockquote, q, .maia-nav ul {
+   font-family: 'open sans',arial,sans-serif;
 }
 
 h1 {
-  font-size: 50px;
-  color: #3ab7a2;
+color: #00CC66;
+
+  /*color:rgba(0,210,0,0.9);*/
+  /*color: #3ab7a2;*/
 }
+
 .jumbotron {
-  background-color: #F2F2F2;
+  /*
+  background-color: #F2F2F2; */
+ background-color:rgba(255,255,255,0.4); /* green with opacity */
 
 }
+
+/*#p1 {background-color:rgba(255,0,0,0.3);} /* red with opacity*/
+/*#p2 {background-color:rgba(0,255,0,0.3);} /* green with opacity */
+/*#p3 {background-color:rgba(0,0,255,0.3);} /* blue with opacity */
+
+/* regs */
+
+
+
 
 /* album */
 .cropthumb {

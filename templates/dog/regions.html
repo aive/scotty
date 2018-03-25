@@ -1,22 +1,32 @@
-<!DOCTYPE html>
+
+
 {% extends 'dog/base.html' %}
+{% load dog_template_tags %}
 {% load staticfiles %}
 
-
-{% load dog_template_tags %}
 {% block title_block %}
+
 {% endblock %}
 
-
 {% block body_block %}
-<div class="jumbotron">
-
-<h1 class="display-3" >Regions</h1>
 
 
+<section>
+	<div class="jumbotron" style="text-align: center">
+		<h1 class="jumbotron-heading">Regions</h1>
+		<p class="lead text-muted">Here are some wonderful dogfriendly cottages in Highlands, Lowlands and Islands. Check them out! You can take your dog with you. As all the cottages welcome you both. </p>
 
-{% get_region_list region %}
-</div>
+	</div>
+</section>
+
+
+<body class="container">
+    <div>
+        <p class="display-3" >{% get_region_list region %}</p>
+    </div>
+</body>
+
+
 
 
 {% endblock %}
