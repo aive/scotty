@@ -43,9 +43,11 @@
 
 					<div class="card">
 						<!-- <img data-src="holder.js/100px280/thumb" alt="Card image cap"> -->
+						<div class="cropthumb">
 						<a target="_blank" href="{% url 'dog:show_cottage' cottage.slug %}">
-							<img src="{{ MEDIA_URL }}{{ cottage.image }}" alt="Image of {{ cottage.name }}"	width="340" >
+							<img id="thumb" src="{{ MEDIA_URL }}{{ cottage.image }}" alt="Image of {{ cottage.name }}"	width="340" >
 					  </a>
+					</div>
 						<div class="desc">{{ cottage.name }}</div>
 						<p class="card-text">{{ cottage.description }}</p>
 					</div>
@@ -77,7 +79,7 @@
 		The specified Region does not exist!
 	{% endif %}
 
-	
+
 	</body>
 	</html>
 	{% endblock %}

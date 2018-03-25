@@ -8,55 +8,56 @@ Home/Search
 
 
 <style>
-h1,h2 {text-align:center;}
-#bone {
-  text-align:center;
-  color: red;
-  width: 300%;
-  height: 100px;
-
+/* index page */
+#cottages {
+  font-size: 20px;
+  color: #262D06;
+  /* color: #3ab7a2;*/
 }
-h3 {text-align:center; color:gray;}
-p {text-align:center;}
-#cottages {text-align:center; background-color: #c0dfd9;}
 
-/* Container holding the image and the text */
-.container {
-    position: relative;
+     ul{
+    list-style-type: none;
     text-align: center;
-    color: white;
-}
+    text-rendering: auto;
+    color: #A0EACA;
+    }
 
+    a {
+      color: #3ab7a2;
+      /* color: #3ab7a2;*/
+    }
 
-/* Centered text */
-.centered {
-    font-size: 40px;
-    color: white;
-    position: absolute;
-    top: 83%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
 </style>
 
-<div class="w3-display-container">
-
-  <img src="{% static "images/scotty-22.png" %}" width="250" alt="scotty" />
-  <img src="{% static "images/sketch-01.png" %}" width="550" alt="scotty" />
-  <h1 >Type to find cottages. </h1>
 
 
-<div >
-  <img src="{% static "images/sketch-14.png" %}" width="800" alt="scotty" />
-<form>
-<h2 class="centered" ><input  type="text" name="suggestion" value="" id="suggestion" /></h2>
-</form>
-<hr>
+<section>
+	<div class="jumbotron" style="text-align: center">
+    <img src="{% static "images/scotty-22.png" %}" width="250" alt="scotty" />
+    <img src="{{ MEDIA_URL }}sketches/sketch-01.png" width="500" alt='Image of scotty'/>
+    <h1 >Type to find cottages. </h1>
+    <!-- <img id='bone' src="{{ MEDIA_URL }}sketches/sketch-14.png" width="500" alt='Image of a bone'/> -->
 
-</div>
-</div>
-<div id="cottages"></div>
+
+    <form>
+    <h3 class="centered" ><input  type="text" name="suggestion" value="" id="suggestion" /></h3>
+    </form>
+    <div id="cottages"></div>
+
+    <div class="dropdown w3-flat-pumpkin">
+      <hr>
+			<button class="dropbtn">Go to:</button>
+			<div class="dropdown-content">
+				<a href="{%url 'dog:regions' %}">Regions</a>
+				<a href="{%url 'dog:browse_cottages' %}">All</a>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+
 
 
 
@@ -94,23 +95,6 @@ p {text-align:center;}
 
 
 <!--h2>Type to fetch.</h2-->
-
-
-
-<!-- Google map
-<div>
-  <h1>&nbsp;</h1>
-  <h1>&nbsp;</h1>
-
-  <h2>Map of Scotland</h2>
-
-  <div id="map"></div>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz9XGMk2hpR3-3cO8bBYNRAGwr87d9GWo&callback=initMap">
-  /* maps css */
-</script>
-</div>
--->
 
 
 

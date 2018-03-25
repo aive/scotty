@@ -2,10 +2,16 @@
 {% load staticfiles %}
 
 	{% block body_block %}
-	<h1>Register Here</h1>
+
+	<div class="jumbotron">
+
+	<h1 class="display-3" >Register Here</h1>
+	<h1>&nbsp</h1>
+
 	<form method="post" action=".">
 	{% csrf_token %}
 	{{ form.as_p }}
 	<input type="submit" value="Submit" />
 	</form>
+	</div>
 	{% endblock %}

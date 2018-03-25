@@ -7,32 +7,36 @@
   <!-- meta-->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="{% static 'images/scotty.ico' %}">
 
   <meta charset="utf-8">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
-<!-- scripts for easy autocomplete -->
+  <!-- scripts for easy autocomplete -->
 
 
-<!-- CSS file -->
-<link rel="stylesheet" href="{% static 'css/easy-autocomplete.min.css' %}">
+  <!-- CSS file -->
+  <link rel="stylesheet" href="{% static 'css/easy-autocomplete.min.css' %}">
 
-<link rel="stylesheet" href="{% static 'css/album.css' %}" type="text/css" media="screen, projection" />
-<link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="{% static 'css/album.css' %}" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" media="screen, projection" />
 
 
-<!-- Additional CSS Themes file - not required-->
-<link rel="stylesheet" href= "{% static 'css/easy-autocomplete.themes.min.css' %}">
+  <!-- Additional CSS Themes file - not required-->
+  <link rel="stylesheet" href= "{% static 'css/easy-autocomplete.themes.min.css' %}">
 
-<!-- scripts for easy autocomplete end -->
+  <!-- scripts for easy autocomplete end -->
 
   <!-- Bootstrap CSS -->
   <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <!-- <link href= "http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"> -->
+
+
+
 
   <link rel="stylesheet" href="{% static 'css/main.css'%}" type="text/css" media="screen, projection" />
 
@@ -99,77 +103,103 @@
 
   <!--- main content area -->
 
-<div >
+  <div >
     <div class="row">
-        <div class="container ">
+      <div class="container">
         <h1 >&nbsp;</h1>
         {% block body_block %}
         {% endblock %}
       </div>
     </div>
-
-<style>
-
- #bodyblock {
-   background-image: url("{% static 'images/background.png' %}");
-   background-color: #e9ece5;
-   background-image opacity: 0.2;
- }
-
- </style>
-
-
-  <!--- footer area -->
-
-  <footer class="text-muted">
-    <div class="container">
-      {% block footer %}
-      <p class="float-right">
-        <a id="backtotop" href="#">Back to top</a>
-      </p>
-      <div id="footertext">&copy; Scotty by "It takes 4 to Django"</div>
-      {% endblock %}
-    </div>
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-
-  <!-- our google maps script-->
-  <script src= "{% static 'js/maps.js' %}> </script>
-  <!--our google searchbar script
-  <script src= "static/js/searchbar.js"> </script>
-
-
-<!--ajaxing-->
-  <!-- <script src="{% static "js/jquery.min.js" %}"></script> -->
-  <!-- <script src="{% static "js/scotty-ajax.js" %}"></script> -->
-
-  <!--ajax
-  <script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
-</script>
-
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script
-src=
-"http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js">
-</script>
-
-<!-- jQuery CDN for easyAutocomplete -->
-<!-- <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> -->
-  <!-- JS file -->
-<script src="{% static 'js/jquery.easy-autocomplete.min.js' %}"></script>
-<script src="{% static 'js/scotty-ajax.js' %}"></script>
-<!-- end jQuery CDN for easyAutocomplete -->
-
-<!-- jQuery first, then Tether, then Bootstrap JS. -->
-<!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
-
-
 </div>
-</body>
-</html>
+    <style>
+
+    #bodyblock {
+      background-image: url("{% static 'images/background.png' %}");
+      background-color: #e9ece5;
+      background-image opacity: 0.2;
+
+    }
+    #footertext{
+      font-size: 14px;
+      color: gray;
+      opacity: 0.6;
+
+    }
+
+    #backtotop{
+      color: gray;
+    }
+
+
+    </style>
+
+
+    <!--- footer area -->
+
+    <footer class="text-muted">
+      <div class="container">
+        {% block footer %}
+
+        <div class="row">
+          <div  class="col-sm">
+          <p ><a id="footertext" href= "https://github.com/aive/scotty.git">Scotty on Github</a></p>
+          <a id="footertext" href="mailto:#">2288799K@student.gla.ac.uk</a>
+          </div>
+          <div  class="col-sm">
+            <strong id="footertext"><center>It takes 4 to Django </p> <a href="mailto:#">scotty@dog.uk</a></center></strong>
+          </div>
+          <div class="col-sm">
+            <div class="float-right">
+            <center><a id="backtotop" href="#">Back to top</a></center>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    </footer>
+    {% endblock %}
+
+
+
+      <!-- Bootstrap core JavaScript -->
+
+      <!-- our google maps script-->
+      <script src= "{% static 'js/maps.js' %}> </script>
+      <!--our google searchbar script
+      <script src= "static/js/searchbar.js"> </script>
+
+
+      <!--ajaxing-->
+      <!-- <script src="{% static "js/jquery.min.js" %}"></script> -->
+      <!-- <script src="{% static "js/scotty-ajax.js" %}"></script> -->
+
+      <!--ajax
+      <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+      </script>
+
+
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script
+      src=
+      "http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js">
+      </script>
+
+      <!-- jQuery CDN for easyAutocomplete -->
+      <!-- <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> -->
+      <!-- JS file -->
+      <script src="{% static 'js/jquery.easy-autocomplete.min.js' %}"></script>
+      <script src="{% static 'js/scotty-ajax.js' %}"></script>
+      <!-- end jQuery CDN for easyAutocomplete -->
+
+      <!-- jQuery first, then Tether, then Bootstrap JS. -->
+      <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+
+      </div>
+      </body>
+      </html>

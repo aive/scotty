@@ -1,25 +1,22 @@
+<!DOCTYPE html>
 {% extends 'dog/base.html' %}
 {% load staticfiles %}
 
 
 {% load dog_template_tags %}
 {% block title_block %}
-
-Regions
-
 {% endblock %}
 
 
 {% block body_block %}
+<div class="jumbotron">
+
+<h1 class="display-3" >Regions</h1>
 
 
-<h1 align ="center">Regions</h1>
-
-
-{% block sidebar_block %}
 
 {% get_region_list region %}
+</div>
 
-{% endblock %}
 
 {% endblock %}

@@ -1,9 +1,13 @@
+
+
+
   <ul>
   {% if cottages %}
     {% for c in cottages %}
+
       <li><a href="{% url 'dog:show_cottage' c.slug %}">{{ c.name }}</a></li>
     {% endfor %}
   {% else %}
-      <li><strong>No cottages found</strong></li>
+      <li>No cottages found</li>
   {% endif %}
   </ul>
