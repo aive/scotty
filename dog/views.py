@@ -54,7 +54,7 @@ def suggest_cottage(request):
 def regions(request):
    context_dict = {}
    #visitor_cookie_handler(request)
-   context_dict['visits'] = request.session['visits']
+   #context_dict['visits'] = request.session['visits']
    return render(request, 'dog/regions.html', context=context_dict)
 
 #View displaying the particular selected region
